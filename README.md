@@ -27,3 +27,5 @@ python3 manage.py migrate
 
 ## templates
 cp -r ../.pip-modules/lib/python3.8/site-packages/allauth/templates/* ./templates/allauth/
+
+python3 manage.py startapp home
