@@ -24,3 +24,6 @@ python3 manage.py migrate
 'python3 manage.py runserver' to check it is runner as expected.
 
 'pip3 freeze > requirements.txt'
+
+## templates
+cp -r ../.pip-modules/lib/python3.8/site-packages/allauth/templates/* ./templates/allauth/
