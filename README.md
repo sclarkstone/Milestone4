@@ -29,3 +29,17 @@ python3 manage.py migrate
 cp -r ../.pip-modules/lib/python3.8/site-packages/allauth/templates/* ./templates/allauth/
 
 python3 manage.py startapp home
+
+## font awesome
+sign up for free account and get kit code. put this in the base.html template corejs block. 
+
+## database
+pip3 install pillow to allow url image use
+add products to installed apss in seetings.py
+python3 manage.py makemigrations --dry-run
+python3 manage.py makemigrations
+python3 manage.py migrate --plan
+python3 manage.py migrate
+python3 manage.py loaddata categories
+python3 manage.py loaddata products
+tables can now be seen in admin area and data can be manually added
