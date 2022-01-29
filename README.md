@@ -43,3 +43,8 @@ python3 manage.py migrate
 python3 manage.py loaddata categories
 python3 manage.py loaddata products
 tables can now be seen in admin area and data can be manually added
+
+
+
+## photos
+https://www.pexels.com/
