@@ -5,9 +5,9 @@
                 All Products
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="all-products-link">
-                <a href="" class="dropdown-item">By Price</a>
-                <a href="" class="dropdown-item ">By Rating</a>
-                <a href="" class="dropdown-item ">By Category</a>
+                <a href="{% url 'products' %}?sort=price&direction=asc" class="dropdown-item">By Price</a>
+                <a href="{% url 'products' %}?sort=rating&direction=desc" class="dropdown-item ">By Rating</a>
+                <a href="{% url 'products' %}?sort=category&direction=asc" class="dropdown-item ">By Category</a>
                 <a href="{% url 'products' %}" class="dropdown-item">All Products</a>
             </div>
         </li>
@@ -32,10 +32,10 @@
                 Nutrition
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="Nutrition">
-                <a href="{% url 'products' %}?category=before" class="dropdown-item">Before run</a>
-                <a href="{% url 'products' %}?category=during" class="dropdown-item">During run</a>
-                <a href="{% url 'products' %}?category=after" class="dropdown-item">After run</a>
-                <a href="{% url 'products' %}?category=before,during,after" class="dropdown-item">All Nutrtion</a>
+                <a href="{% url 'products' %}?category=nutrition" class="dropdown-item">Nutrition & Hydration</a>
+                <a href="{% url 'products' %}?category=recovery" class="dropdown-item">Recovery</a>
+                <a href="{% url 'products' %}?category=attire" class="dropdown-item">Attire</a>
+                <a href="{% url 'products' %}?category=nutrition,recovery,attire" class="dropdown-item">All Nutrtion</a>
             </div>
         </li>
 
