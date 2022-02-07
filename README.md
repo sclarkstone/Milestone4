@@ -48,3 +48,5 @@ tables can now be seen in admin area and data can be manually added
 
 ## photos
 https://www.pexels.com/
+
+ccs tricks
