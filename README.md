@@ -62,3 +62,15 @@ export STRIPE_PUBLIC_KEY=pk_test_51KRfdfDe1QIHYXng2t6CgZWkRXFUlsboPHbBv69k34W7Uq
 export STRIPE_SECRET_KEY=sk_test_51KRfdfDe1QIHYXngUwFlxFjissqNiIwkrncvaG2OU9akgMk1bKnT3pbyTW1bB5DtUx5dq8gdme6MpuBjNb2dJudF00qBV5tT0a
 
 not permananent and would need to be re exported everytime the workspace is started. so save them in gotpod (settings, variables)
+
+test card details
+name - test
+email - test@test.com
+phone - 1234567890
+address - anywhere
+card number - 4242 4242 4242 4242
+card date - 04/24
+CVC - 242
+zip - 42424
+
+
