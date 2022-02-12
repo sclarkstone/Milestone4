@@ -50,3 +50,6 @@ tables can now be seen in admin area and data can be manually added
 https://www.pexels.com/
 
 ccs tricks
+
+forms
+pip3 install django-crispy-forms
