@@ -72,5 +72,10 @@ card number - 4242 4242 4242 4242
 card date - 04/24
 CVC - 242
 zip - 42424
+---------------
+card number - 4000 0025 0000 3155
+card date - 04/24
+CVC - 242
+zip - 44242
 
 
