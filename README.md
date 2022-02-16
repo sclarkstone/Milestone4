@@ -53,6 +53,7 @@ ccs tricks
 
 checkout forms
 pip3 install django-crispy-forms
+pip3 install django-countries - for drop down of country codes
 
 checkout payment
 pip3 install stripe
@@ -60,6 +61,8 @@ pip3 install stripe
 set environment variables
 export STRIPE_PUBLIC_KEY=pk_test_51KRfdfDe1QIHYXng2t6CgZWkRXFUlsboPHbBv69k34W7UqqsWFGbaw9orO2jq6Ttufizc8XVUBrnHLfkPS0o68hI00LFO8BzEI
 export STRIPE_SECRET_KEY=sk_test_51KRfdfDe1QIHYXngUwFlxFjissqNiIwkrncvaG2OU9akgMk1bKnT3pbyTW1bB5DtUx5dq8gdme6MpuBjNb2dJudF00qBV5tT0a
+
+export STRIPE_WH_SECRET=whsec_vQBjhnLPA6FjFzFWfZxRizJebmNinPLc
 
 not permananent and would need to be re exported everytime the workspace is started. so save them in gotpod (settings, variables)
 
