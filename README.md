@@ -86,3 +86,8 @@ zip - 44242
 heroku - new app. provisipn postgres free
 pip3 install dj_database_url
 pip3 install psycopg2-binary
+pip3 install gunicorn
+
+heroku login -i
+email address and use api key for password (get from heroku,account settings, reveal api key)
+heroku config:set DISABLE_COLLECTSTATIC=1 --app milestone4-sclarkstone
