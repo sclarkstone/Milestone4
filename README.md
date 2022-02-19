@@ -92,3 +92,5 @@ heroku login -i
 email address and use api key for password (get from heroku,account settings, reveal api key)
 heroku config:set DISABLE_COLLECTSTATIC=1 --app milestone4-sclarkstone
 heroku git:remote -a milestone4-sclarkstone
+git checkout -b master
+git push heroku master
