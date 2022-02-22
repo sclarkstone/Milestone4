@@ -95,3 +95,6 @@ heroku git:remote -a milestone4-sclarkstone
 git checkout -b master
 git push heroku master
 https://miniwebtool.com/django-secret-key-generator/ to get secrete key for heroku
+
+for static files set up cloudinary account and pip3 install cloudinary,pip3 install django-cloudinary-storage
+then add cloud_name, CLOUDINARY_URL, api_key and api_secret to git pod and heroku variables
