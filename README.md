@@ -98,3 +98,4 @@ https://miniwebtool.com/django-secret-key-generator/ to get secrete key for hero
 
 for static files set up cloudinary account and pip3 install cloudinary,pip3 install django-cloudinary-storage
 then add cloud_name, CLOUDINARY_URL, api_key and api_secret to git pod and heroku variables
+python3 manage.py collectstatic to push static files
