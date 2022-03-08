@@ -35,7 +35,7 @@ sign up for free account and get kit code. put this in the base.html template co
 
 ## database
 pip3 install pillow to allow url image use
-add products to installed apss in seetings.py
+add products to installed apps in settings.py
 python3 manage.py makemigrations --dry-run
 python3 manage.py makemigrations
 python3 manage.py migrate --plan

@@ -5,7 +5,7 @@
                 Home
             </a>
         </li>
-        <li class="nav-item dropdown">
+        <!-- <li class="nav-item dropdown">
             <a class="logo-font font-weight-bold nav-link text-black mr-5" href="#" id="all-products-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 All Products
             </a>
@@ -15,13 +15,13 @@
                 <a href="{% url 'products' %}?sort=category&direction=asc" class="dropdown-item ">By Category</a>
                 <a href="{% url 'products' %}" class="dropdown-item">All Products</a>
             </div>
-        </li>
+        </li> -->
 
-        <li class="nav-item dropdown">
-            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="#" id="clothing-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Distance
+        <li class="nav-item">
+            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="{% url 'products' %}?category=Plans" id="plans-link">
+                Custom plans
             </a>
-            <div class="dropdown-menu border-0" aria-labelledby="Distance">
+            <!-- <div class="dropdown-menu border-0" aria-labelledby="Plans">
                 <a href="{% url 'products' %}?category=C25K" class="dropdown-item">C25K</a>
                 <a href="{% url 'products' %}?category=10km" class="dropdown-item">10km</a>
                 <a href="{% url 'products' %}?category=HM" class="dropdown-item">Half marathon</a>
@@ -29,22 +29,22 @@
                 <a href="{% url 'products' %}?category=UM" class="dropdown-item">Ultra marathon</a>
                 <a href="{% url 'products' %}?category=XC" class="dropdown-item">Cross country</a>
                 <a href="{% url 'products' %}?category=C25K,10km,HM,XC,UM,FM" class="dropdown-item">All Distances</a>
-            </div>
+            </div> -->
         </li>
 
-        <li class="nav-item dropdown">
-            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="#" id="homeware-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Nutrition
+        <li class="nav-item">
+            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="{% url 'products' %}?category=Nutrition,Recovery,Hydration,Attire" id="merch-link"">
+                Merchandise
             </a>
-            <div class="dropdown-menu border-0" aria-labelledby="Nutrition">
+            <!-- <div class="dropdown-menu border-0" aria-labelledby="Nutrition">
                 <a href="{% url 'products' %}?category=nutrition" class="dropdown-item">Nutrition & Hydration</a>
                 <a href="{% url 'products' %}?category=recovery" class="dropdown-item">Recovery</a>
                 <a href="{% url 'products' %}?category=attire" class="dropdown-item">Attire</a>
                 <a href="{% url 'products' %}?category=nutrition,recovery,attire" class="dropdown-item">All Nutrtion</a>
-            </div>
+            </div> -->
         </li>
 
-        <li class="nav-item dropdown">
+        <!-- <li class="nav-item dropdown">
             <a class="logo-font font-weight-bold nav-link text-black" href="#" id="specials-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Special Offers
             </a>
@@ -54,6 +54,6 @@
                 <a href="{% url 'products' %}?category=clearance" class="dropdown-item">Clearance</a>
                 <a href="{% url 'products' %}?category=new_arrivals,deals,clearance" class="dropdown-item">All Specials</a>
             </div>
-        </li>
+        </li> -->
     </ul>
 </div>
