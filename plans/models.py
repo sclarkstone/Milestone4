@@ -1,11 +1,13 @@
 from django.db import models
+from django.contrib.auth.models import User
+
 
 
 class Distance(models.Model):
 
     class Meta:
         verbose_name_plural = 'Distances'
-        
+    
     name = models.CharField(max_length=254)
     friendly_name = models.CharField(max_length=254, null=True, blank=True)
 
@@ -26,3 +28,5 @@ class Session(models.Model):
 
     def __str__(self):
         return self.effort
+
+

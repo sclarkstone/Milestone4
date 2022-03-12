@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load static %}
+{% load plan_tools %}
+
+{% block extra_css %}
+{% endblock %}
+
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <hr>
+                <h2 class="logo-font mb-4">Current Plan</h2>
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-lg-12">
+                <div class="order-history table-responsive">
+                    {% for i in '123456'|make_list %}
+                    <h3>Week {{ forloop.counter }}</h3>
+               
+                    <table class="table table-sm table-borderless">
+                        <thead>
+                            <tr>
+                                <th>Pace</th>
+                                <th>Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for sessions in session %}
+                          {{ sessions.week }}
+                        
+                            {% if sessions.week == '1' %}
+                            <tr>
+                                <td> {{ sessions.effort }}</td>
+                                <td> {{ sessions.description }}</td>
+                            </tr>
+                            {% endif %}
+                            {% endfor %} 
+                        </tbody>
+                    </table>
+                    {% endfor %}
+            </div>
+        </div>
+{% endblock %}

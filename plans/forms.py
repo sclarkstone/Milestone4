@@ -1,10 +1,9 @@
 from django import forms
-from .models import Distance
 
 
-class DistanceForm(forms.ModelForm):
+class SessionForm(forms.ModelForm):
     class Meta:
-        model = Distance
+        model = Session
         exclude = ('user',)
 
     def __init__(self, *args, **kwargs):
