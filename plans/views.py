@@ -3,7 +3,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import Session
+from .models import Session, Distance
 
 from profiles.models import UserProfile
 from checkout.models import Order, OrderLineItem
@@ -35,11 +35,14 @@ def plan_detail(request, product_id):
 
     profile = get_object_or_404(Product, pk=product_id)
     session = Session.objects.all()
+    distance = get_object_or_404(Distance, pk=1)
 
 
     context = {
         'profile': profile,
         'session': session,
+        'distance': distance,
+        'duration': range(1,int(distance.duration)),
     }
 
     return render(request, 'plans/plan_detail.html', context)

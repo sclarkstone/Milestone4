@@ -19,16 +19,17 @@
         <div class="row">
             <div class="col">
                 <hr>
-                <h2 class="logo-font mb-4">Current Plan</h2>
+                <h2 class="logo-font mb-4">{{ distance.name }}</h2>
                 <hr>
             </div>
         </div>
         <div class="row">
             <div class="col-12 col-lg-12">
                 <div class="order-history table-responsive">
-                    {% for i in '123456'|make_list %}
-                    <h3>Week {{ forloop.counter }}</h3>
-               
+                    
+                    {% for i in duration %}
+                    <h3>Week {{ i }}</h3>
+                  
                     <table class="table table-sm table-borderless">
                         <thead>
                             <tr>
@@ -37,10 +38,9 @@
                             </tr>
                         </thead>
                         <tbody>
+                    
                             {% for sessions in session %}
-                          {{ sessions.week }}
-                        
-                            {% if sessions.week == '1' %}
+                            {% if sessions.week|add:0 == i %}
                             <tr>
                                 <td> {{ sessions.effort }}</td>
                                 <td> {{ sessions.description }}</td>
