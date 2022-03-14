@@ -1,5 +1,5 @@
-{% if item.product.image %}
-<img class="img-fluid rounded" src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+{% if item.product.image_url %}
+<img class="img-fluid rounded" src="{{ item.product.image_url }}" alt="{{ item.product.name }}">
 {% else %}
-<img class="img-fluid rounded" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.name }}">
+<img class="img-fluid rounded" src="https://res.cloudinary.com/dyx1tw86r/image/upload/v1645540372/media/noimage.png" alt="{{ item.product.name }}">
 {% endif %}
