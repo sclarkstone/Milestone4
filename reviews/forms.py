@@ -1,10 +1,10 @@
 from django import forms
-from .models import UserPace
+from .models import Review
 
 
-class UserPaceForm(forms.ModelForm):
+class UserReviewForm(forms.ModelForm):
     class Meta:
-        model = UserPace
+        model = Review
         exclude = ('user',)
 
     def __init__(self, *args, **kwargs):

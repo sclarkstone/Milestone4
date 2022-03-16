@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load static %}
+{% load plan_tools %}
+
+{% block extra_css %}
+{% endblock %}
+
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <hr>
+                <h2 class="logo-font mb-4">My Reviews</h2>
+                <hr>
+            </div>
+        </div>
+
+<div class="row">
+    {% for order in orders %}
+    {% for item in order.lineitems.all %}
+    <div class="col-12 col-lg-6">
+  <div class="card mb-3">
+    <div class="row g-0">
+      <div class="col-md-4">
+        {% if item.product.image_url %}
+        <img class="img-fluid rounded-start" src="{{ item.product.image_url }}" alt="{{ item.product.name }}">
+        {% else %}
+        <img class="img-fluid rounded-start" src="https://res.cloudinary.com/dyx1tw86r/image/upload/v1645540372/media/noimage.png" alt="{{ item.product.name }}">
+        {% endif %}
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{ item.product.name }}</h5>
+          <p class="card-text">{{ order.date }}</p>
+          <a href="{% url 'review_detail' item.product.id order.order_number %}">Leave review</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+                                            {% endfor %}
+                            {% endfor %}
+              
+    </div>
+{% endblock %}

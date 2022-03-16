@@ -3,7 +3,9 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import Session, Distance
+from .models import Review
+from .forms import UserReviewForm
+
 
 from profiles.models import UserProfile
 from checkout.models import Order, OrderLineItem
@@ -11,15 +13,15 @@ from products.models import Product, Category
 
 
 @login_required
-def plans(request):
-    """ display users plans"""
+def reviews(request):
+    """ display user reviews"""
     profile = get_object_or_404(UserProfile, user=request.user)
 
     categories = Product.objects.filter(category=5).values_list('name')
 
     orders = profile.orders.all()
     
-    template = 'plans/plans.html'
+    template = 'reviews/reviews.html'
     context = {
         'profile': profile,
         'orders': orders,
@@ -30,19 +32,13 @@ def plans(request):
     return render(request, template, context)
 
 
-def plan_detail(request, product_id):
-    """ A view to show individual plan details """
+def review_detail(request, product_id, order_number):
+    """ A view to show individual review details """
 
     profile = get_object_or_404(Product, pk=product_id)
-    session = Session.objects.all()
-    distance = get_object_or_404(Distance, pk=1)
-
 
     context = {
         'profile': profile,
-        'session': session,
-        'distance': distance,
-        'duration': range(1,int(distance.duration)),
     }
 
-    return render(request, 'plans/plan_detail.html', context)
+    return render(request, 'reviews/review_detail.html', context)
