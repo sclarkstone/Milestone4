@@ -33,12 +33,25 @@ def reviews(request):
 
 
 def review_detail(request, product_id, order_number):
-    """ A view to show individual review details """
+    """ Display the user's profile. """
+    profile = get_object_or_404(UserProfile, user=request.user)
 
-    profile = get_object_or_404(Product, pk=product_id)
+    if request.method == 'POST':
+        form = UserReviewForm(request.POST, instance=profile)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Review submitted successfully')
+        else:
+            messages.error(request, 'Update failed. Please ensure the form is valid.')
+    else:
+        form = UserReviewForm(instance=profile)
+    orders = profile.orders.all()
 
+    template = 'reviews/review_detail.html'
     context = {
-        'profile': profile,
+        'form': form,
+        'orders': orders,
+        'on_profile_page': True
     }
 
-    return render(request, 'reviews/review_detail.html', context)
+    return render(request, template, context)

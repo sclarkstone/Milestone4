@@ -25,6 +25,10 @@
         </div>
         <div class="row">
             <div class="col-12 col-lg-12">
-              
+                <form class="mt-3" action="{% url 'profile' %}" method="POST" id="profile-update-form">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <button class="btn btn-black rounded-0 text-uppercase float-right">Submit</button>
+                </form>
         </div>
 {% endblock %}
