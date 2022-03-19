@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.db import models
 from django.contrib.auth.models import User
 from django.contrib import messages
@@ -32,26 +32,23 @@ def reviews(request):
     return render(request, template, context)
 
 
-def review_detail(request, product_id, order_number):
-    """ Display the user's profile. """
-    profile = get_object_or_404(UserProfile, user=request.user)
-
+@login_required
+def add_review(request):
+    """ Add a user review """
     if request.method == 'POST':
-        form = UserReviewForm(request.POST, instance=profile)
+        form = UserReviewForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Review submitted successfully')
+            messages.success(request, 'Successfully added review!')
+            return redirect(reverse('reviews'))
         else:
-            messages.error(request, 'Update failed. Please ensure the form is valid.')
+            messages.error(request, 'Failed to add review. Please ensure the form is valid.')
     else:
-        form = UserReviewForm(instance=profile)
-    orders = profile.orders.all()
-
-    template = 'reviews/review_detail.html'
+        form = UserReviewForm()
+        
+    template = 'reviews/add_review.html'
     context = {
         'form': form,
-        'orders': orders,
-        'on_profile_page': True
     }
 
     return render(request, template, context)

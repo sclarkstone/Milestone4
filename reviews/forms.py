@@ -5,7 +5,7 @@ from .models import Review
 class UserReviewForm(forms.ModelForm):
     class Meta:
         model = Review
-        exclude = ('user',)
+        fields = '__all__'
 
     def __init__(self, *args, **kwargs):
         """
@@ -14,18 +14,10 @@ class UserReviewForm(forms.ModelForm):
         """
         super().__init__(*args, **kwargs)
         placeholders = {
-            'default_subject': 'Subject',
-            'default_review': 'Review',
-            'default_rating': 'Rating',
+            'name': 'Name',
+
         }
 
-        self.fields['default_subject'].widget.attrs['autofocus'] = True
-        for field in self.fields:
-            if field != 'default_country':
-                if self.fields[field].required:
-                    placeholder = f'{placeholders[field]} *'
-                else:
-                    placeholder = placeholders[field]
-                self.fields[field].widget.attrs['placeholder'] = placeholder
-            self.fields[field].widget.attrs['class'] = 'border-black rounded-0 profile-form-input'
-            self.fields[field].label = False
+        self.fields['name'].widget.attrs['autofocus'] = True
+        for field_name, field in self.fields.items():
+            field.widget.attrs['class'] = 'border-black rounded-0'
