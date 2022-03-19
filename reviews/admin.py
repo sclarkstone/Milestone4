@@ -7,6 +7,12 @@ from .models import Review
 class ReviewAdmin(admin.ModelAdmin):
     list_display = (
         'name',
+        'subject',
+        'review',
+        'rating',
+        'product_id',
+        'order_number',
+        'date',
 
     )
 

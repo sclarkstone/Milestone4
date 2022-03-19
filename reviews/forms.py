@@ -14,7 +14,12 @@ class UserReviewForm(forms.ModelForm):
         """
         super().__init__(*args, **kwargs)
         placeholders = {
-            'name': 'Name',
+            'name': 'Username',
+            'subject': 'Title',
+            'review': 'review',
+            'rating': 'rating',
+            'product_id': 'product_id',
+            'order_number': 'order_number',
 
         }
 

@@ -41,7 +41,7 @@
         <div class="card-body">
           <h5 class="card-title">{{ item.product.name }}</h5>
           <p class="card-text">{{ order.date }}</p>
-          <a href="{% url 'review_detail' item.product.id order.order_number %}">Leave review</a>
+          <a href="{% url 'add_review' %}">Leave review</a>
         </div>
       </div>
     </div>

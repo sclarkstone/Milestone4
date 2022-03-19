@@ -32,6 +32,31 @@ def reviews(request):
     return render(request, template, context)
 
 
+
+def review_detail(request, product_id, order_number):
+    """ Display the selected product to review """
+    if request.method == 'POST':
+        form = UserReviewForm(request.POST)
+        if form.is_valid():
+            form.save()
+        else:
+            messages.error(request, 'Failed to add review. Please ensure the form is valid.')
+    else:
+        form = UserReviewForm()
+
+    product = get_object_or_404(Product, pk=product_id)
+    order = get_object_or_404(Order, order_number=order_number)
+
+    template = 'reviews/review_detail.html'
+    context = {
+        'form': form,
+        'order': order,
+        'product': product,
+    }
+
+    return render(request, template, context)
+    
+
 @login_required
 def add_review(request):
     """ Add a user review """
