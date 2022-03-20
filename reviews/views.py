@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import Review
 from .forms import UserReviewForm
+from django.db.models import Avg
 
 
 from profiles.models import UserProfile
@@ -33,25 +34,19 @@ def reviews(request):
 
 
 
-def review_detail(request, product_id, order_number):
+def review_detail(request, product_id):
     """ Display the selected product to review """
-    if request.method == 'POST':
-        form = UserReviewForm(request.POST)
-        if form.is_valid():
-            form.save()
-        else:
-            messages.error(request, 'Failed to add review. Please ensure the form is valid.')
-    else:
-        form = UserReviewForm()
-
     product = get_object_or_404(Product, pk=product_id)
-    order = get_object_or_404(Order, order_number=order_number)
+    review = Review.objects.filter(product_id=product_id).order_by('-date')
+    review_total = Review.objects.filter(product_id=product_id).count()
+    review_sum = Review.objects.filter(product_id=product_id).aggregate(Avg('rating'))['rating__avg']
 
     template = 'reviews/review_detail.html'
     context = {
-        'form': form,
-        'order': order,
         'product': product,
+        'review': review,
+        'review_total': review_total,
+        'review_sum': review_sum,
     }
 
     return render(request, template, context)
@@ -70,7 +65,6 @@ def add_review(request):
             messages.error(request, 'Failed to add review. Please ensure the form is valid.')
     else:
         form = UserReviewForm()
-        
     template = 'reviews/add_review.html'
     context = {
         'form': form,

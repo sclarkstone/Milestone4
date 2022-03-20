@@ -37,7 +37,7 @@
                         </a>
                     </p>
                     {% endif %}
-                        <small class="text-muted"><i class="fas fa-star mr-1"></i>{% if review_sum == None %}0 {% else %}{{ review_sum }}{% endif %} / 5 ({{ review_total }})</small>
+                        <small class="text-muted"><i class="fas fa-star mr-1"></i>{% if review_sum == None %}No ratings yet {% else %}{{ review_sum }} / 5 (<a href="{% url 'review_detail' product.id %}">{{ review_total }}</a>){% endif %}</small>
                     {% if request.user.is_superuser %}
                         <small class="ml-3">
                             <a href="{% url 'edit_product' product.id %}">Edit</a> | 
