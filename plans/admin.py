@@ -9,6 +9,7 @@ class DistanceAdmin(admin.ModelAdmin):
     list_display = (
         'friendly_name',
         'name',
+        'product_id',
     )
 
 

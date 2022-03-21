@@ -34,9 +34,8 @@ def plan_detail(request, product_id):
     """ A view to show individual plan details """
 
     profile = get_object_or_404(Product, pk=product_id)
-    session = Session.objects.all()
-    distance = get_object_or_404(Distance, pk=1)
-
+    distance = get_object_or_404(Distance, product_id=product_id)
+    session = Session.objects.filter(distance=distance.pk)
 
     context = {
         'profile': profile,
