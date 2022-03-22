@@ -1,1 +1,1 @@
-web: gunicorn milestone4:app
+web: gunicorn main:main
