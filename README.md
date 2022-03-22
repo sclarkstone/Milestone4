@@ -109,3 +109,4 @@ to see all errors in all files - python3 -m flake8
 chrome error - jquery must be before bootstrap. the CDN link had stopped working.
 
 deploying to heroku - ModuleNotFoundError: No module named 'application'. amended procfile to fix
+deploying to heroku - Failed to find attribute 'app' in 'milestone4'. amended procfile to fix
