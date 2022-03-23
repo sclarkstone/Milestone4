@@ -6,7 +6,7 @@ from .models import Review
 
 class ReviewAdmin(admin.ModelAdmin):
     list_display = (
-        'name',
+        'user',
         'subject',
         'review',
         'rating',

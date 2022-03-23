@@ -55,9 +55,13 @@ def review_detail(request, product_id):
 @login_required
 def add_review(request):
     """ Add a user review """
+    profile = get_object_or_404(UserProfile, user=request.user)
     if request.method == 'POST':
         form = UserReviewForm(request.POST)
         if form.is_valid():
+            form.instance.user = 'sclarkstone7153'
+            form.instance.product_id = '8'
+            form.instance.order_number = '8dsfdsfr34rfesd'
             form.save()
             messages.success(request, 'Successfully added review!')
             return redirect(reverse('reviews'))
