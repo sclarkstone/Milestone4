@@ -59,7 +59,7 @@ def add_review(request):
     if request.method == 'POST':
         form = UserReviewForm(request.POST)
         if form.is_valid():
-            form.instance.user = 'sclarkstone7153'
+            form.instance.user = profile.user
             form.instance.product_id = '8'
             form.instance.order_number = '8dsfdsfr34rfesd'
             form.save()
@@ -72,6 +72,7 @@ def add_review(request):
     template = 'reviews/add_review.html'
     context = {
         'form': form,
+        'profile': profile,
     }
 
     return render(request, template, context)
