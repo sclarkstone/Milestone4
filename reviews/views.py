@@ -53,7 +53,7 @@ def review_detail(request, product_id):
 
 
 @login_required
-def add_review(request):
+def add_review(request, product_id):
     """ Add a user review """
     profile = get_object_or_404(UserProfile, user=request.user)
     if request.method == 'POST':
@@ -73,6 +73,7 @@ def add_review(request):
     context = {
         'form': form,
         'profile': profile,
+        'product_id': product_id,
     }
 
     return render(request, template, context)
