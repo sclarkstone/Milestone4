@@ -53,15 +53,17 @@ def review_detail(request, product_id):
 
 
 @login_required
-def add_review(request, product_id):
+def add_review(request, product_id, order_number):
     """ Add a user review """
+    order = get_object_or_404(Order, order_number=order_number)
+    product = get_object_or_404(Product, pk=product_id)
     profile = get_object_or_404(UserProfile, user=request.user)
     if request.method == 'POST':
         form = UserReviewForm(request.POST)
         if form.is_valid():
             form.instance.user = profile.user
-            form.instance.product_id = '8'
-            form.instance.order_number = '8dsfdsfr34rfesd'
+            form.instance.product_id = product.id
+            form.instance.order_number = order.order_number
             form.save()
             messages.success(request, 'Successfully added review!')
             return redirect(reverse('reviews'))
@@ -73,7 +75,8 @@ def add_review(request, product_id):
     context = {
         'form': form,
         'profile': profile,
-        'product_id': product_id,
+        'product': product,
+        'order': order,
     }
 
     return render(request, template, context)

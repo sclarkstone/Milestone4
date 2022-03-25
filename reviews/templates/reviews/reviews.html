@@ -42,7 +42,7 @@
                         </td>
                       <td>{{ item.product.name }}</td>
                       <td>{{ order.date }}</td>
-                      <td><a href="{% url 'add_review' item.product.pk %}">Leave review</a></td>
+                      <td><a href="{% url 'add_review' item.product.id order.order_number %}">Leave review</a></td>
                   </tr>
                   {% endfor %}
                   {% endfor %}

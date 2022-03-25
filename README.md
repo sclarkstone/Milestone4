@@ -110,3 +110,7 @@ chrome error - jquery must be before bootstrap. the CDN link had stopped working
 
 deploying to heroku - ModuleNotFoundError: No module named 'application'. amended procfile to fix
 deploying to heroku - Failed to find attribute 'app' in 'milestone4'. amended procfile to fix
+heroku - admin css not showing. in seetings file STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')] corrected to STATICFILES_DIRS = os.path.join(BASE_DIR, 'static'),
+
+
+django error 'Reverse for 'add_review' with no arguments not found'. Although i had the product_id parameter in the url.py, views.py and reviews.html template i had not got it in the form POST action on the add_review template itself.
