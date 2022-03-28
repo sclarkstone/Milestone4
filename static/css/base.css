@@ -327,3 +327,30 @@ input[name='q']::placeholder {
         padding: .25rem .5rem !important;
     }
 }
+
+/* ----------------------------------- footer */
+
+
+footer {
+    background-color: #000;
+    color: #fff;
+    padding: 10px;
+    max-width: 100%;
+    overflow: visible;
+
+}
+
+.social-media {
+    text-align: center;
+}
+
+.social-media li {
+    display: inline;
+}
+
+.social-media i {
+    font-size: 160%;
+    margin-top: 10px;
+    padding-left: 2%;
+    color: #fff;
+}
