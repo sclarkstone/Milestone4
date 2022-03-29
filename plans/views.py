@@ -41,7 +41,7 @@ def plan_detail(request, product_id):
         'profile': profile,
         'session': session,
         'distance': distance,
-        'duration': range(1,int(distance.duration)),
+        'duration': range(1,int(distance.duration)+1),
     }
 
     return render(request, 'plans/plan_detail.html', context)

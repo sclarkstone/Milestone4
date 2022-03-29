@@ -14,6 +14,7 @@ class Distance(models.Model):
     friendly_name = models.CharField(max_length=254, null=True, blank=True)
     duration = models.CharField(max_length=254, null=True, blank=True)
     product_id = models.CharField(max_length=254, null=True, blank=True)
+    instructions = models.CharField(max_length=254, null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -23,6 +24,9 @@ class Distance(models.Model):
 
     def get_duration(self):
         return self.duration
+
+    def get_instructions(self):
+        return self.instructions
 
 
 class Session(models.Model):

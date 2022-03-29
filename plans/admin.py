@@ -10,6 +10,8 @@ class DistanceAdmin(admin.ModelAdmin):
         'friendly_name',
         'name',
         'product_id',
+        'duration',
+        'instructions',
     )
 
 

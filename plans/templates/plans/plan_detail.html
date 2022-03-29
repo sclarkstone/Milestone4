@@ -19,20 +19,25 @@
         <div class="row">
             <div class="col">
                 <hr>
-                <h2 class="logo-font mb-4">{{ distance.name }}</h2>
+                <h2 class="logo-font mb-4">{{ distance.friendly_name }} Plan</h2>
                 <hr>
             </div>
+        </div>
+        <div class="alert alert-dark" role="alert">
+            <p>Each session should begin with a warm up of a {{ distance.instructions }}.</p>
+            <p>Rest days can be used for cross training (cycling or swimming), walking or complete rest.</p>
+        
         </div>
         <div class="row">
             <div class="col-12 col-lg-12">
                 <div class="order-history table-responsive">
-                    
                     {% for i in duration %}
                     <h3>Week {{ i }}</h3>
                   
                     <table class="table table-sm table-borderless">
                         <thead>
                             <tr>
+                                <th>Session</th>
                                 <th>Pace</th>
                                 <th>Details</th>
                             </tr>
@@ -42,6 +47,7 @@
                             {% for sessions in session %}
                             {% if sessions.week|add:0 == i %}
                             <tr>
+                                <td> {{ sessions.day }}</td>
                                 <td> {{ sessions.effort }}</td>
                                 <td> {{ sessions.description }}</td>
                             </tr>
