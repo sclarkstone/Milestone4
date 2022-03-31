@@ -334,7 +334,7 @@ input[name='q']::placeholder {
 footer {
     background-color: #000;
     color: #fff;
-    padding: 10px;
+    padding: 5px;
     max-width: 100%;
     overflow: visible;
 
@@ -349,7 +349,7 @@ footer {
 }
 
 .social-media i {
-    font-size: 160%;
+    font-size: 140%;
     margin-top: 10px;
     padding-left: 2%;
     color: #fff;

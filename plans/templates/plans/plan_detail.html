@@ -31,31 +31,51 @@
         <div class="row">
             <div class="col-12 col-lg-12">
                 <div class="order-history table-responsive">
-                    {% for i in duration %}
-                    <h3>Week {{ i }}</h3>
-                  
+                {% for i in duration %}
+                <h3>Week {{ i }}</h3>
+                                   
                     <table class="table table-sm table-borderless">
                         <thead>
                             <tr>
                                 <th>Session</th>
                                 <th>Pace</th>
-                                <th>Details</th>
+                                <th>Description</th>
+                                
                             </tr>
                         </thead>
                         <tbody>
-                    
+                           
+                            {% for z in days %}
+                            <tr>
+                                <td>{{ z }}</td>
+                                <td>-</td>
+                                <td>REST</td>
+                                </tr>
                             {% for sessions in session %}
                             {% if sessions.week|add:0 == i %}
+                            
+                            {% if z == sessions.day|add:0 %}
                             <tr>
-                                <td> {{ sessions.day }}</td>
-                                <td> {{ sessions.effort }}</td>
-                                <td> {{ sessions.description }}</td>
-                            </tr>
-                            {% endif %}
+                                <td>{{ sessions.day }}</td>
+                                <td>{{ sessions.effort }}</td>
+                                <td>{{ sessions.description }}</td>
+                                </tr>
+                                {% endif %}
+                                                 
+                          
+
+                                {% endif %}
+                             
                             {% endfor %} 
+                            {% endfor %}
+
+                       
                         </tbody>
                     </table>
-                    {% endfor %}
+                   
+
+                {% endfor %} 
+                 
             </div>
         </div>
 {% endblock %}
