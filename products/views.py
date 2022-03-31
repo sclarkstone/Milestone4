@@ -39,6 +39,10 @@ def all_products(request):
             
         if 'category' in request.GET:
             categories = request.GET['category'].split(',')
+            if 'Plans' in categories:
+                plans = True
+            else:
+                plans= False
             products = products.filter(category__name__in=categories)
             categories = Category.objects.filter(name__in=categories)
 
@@ -58,6 +62,7 @@ def all_products(request):
         'search_term': query,
         'current_categories': categories,
         'current_sorting': current_sorting,
+        'plans': plans,
 
     }
 
