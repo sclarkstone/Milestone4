@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% load static %}
-{% load plan_tools %}
 
 {% block extra_css %}
 {% endblock %}
@@ -25,7 +24,6 @@
     </div>
     <div class="row">
         <div class="col-8 col-md-8 col-lg-8 offset-lg-2">
-            <p class="text-muted">Reviews</p>
             <div class="order-history table-responsive">
               <table class="table table-sm table-borderless">
                   <tbody>
@@ -45,6 +43,9 @@
                       <td><a href="{% url 'add_review' item.product.id order.order_number %}">Leave review</a></td>
                   </tr>
                   {% endfor %}
+                  {% empty %}
+                  You dont have any reviews to leave yet. Make a purchase of a <a href="{% url 'products' %}?category=Plans">plan </a> or <a href="{% url 'products' %}?category=Nutrition,Recovery,Hydration,Attire">merchandise </a> first.
+
                   {% endfor %}
                   </tbody>
               </table>

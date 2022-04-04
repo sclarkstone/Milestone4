@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% load static %}
-{% load plan_tools %}
 
 {% block extra_css %}
 {% endblock %}
@@ -32,48 +31,34 @@
             
             <div class="col-8 col-md-8 col-lg-8 offset-lg-2">
                           
+                                    
+                               
                 <div class="order-history table-responsive">
                     <table class="table table-sm table-borderless">
-                        <thead>
-                            <tr>
-                                <th>Plan</th>
-                                <th>Expiry Date</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
                         
-                               
-
+                        <tbody>
                             {% for order in orders %}
+                           
                             {% for item in order.lineitems.all %}
-                            {% for category in categories %}
-                            {% if item.product.name in category|join:", " %}
-                            {% if item|length > 1 %}
-                            You dont have any plans set up yet, go to <a href="{% url 'products' %}?category=Plans">to set up your first plan.</a>
-                     
-                            {% endif %}
+                            {% if item.product.name in categories|join:", " %}
+                          
                             <tr>
                                 <td>
-                                {{ item.product.name }}
-                            </td>
-                            <td>{{ order.date | calc_expire_date }}</td>
-                            <td>{% if order.date|calc_expire_date|date:"YmdHis" < now|date:"YmdHis" %}
-                                Expired
-                            {% else %}
-                            <a href="{% url 'plan_detail' item.product.id  %}">View plan</a>
-                            {% endif %}
+                                    {{ item.product.name }} - <a href="{% url 'plan_detail' item.product.id  %}">View plan</a>
                             </td>
                         </tr>
+                       
                             {% endif %}
-                            {% endfor %}  
                            
                       
-                    {% endfor %}     
+                    {% endfor %} 
+                    {% empty %}
+                    You dont have any plans set up yet. Check out the <a href="{% url 'products' %}?category=Plans">plans </a> to set up your first plan.
+    
                             {% endfor %}
-
                         </tbody>
                     </table>
+                    
                 
                 </div>
             </div>

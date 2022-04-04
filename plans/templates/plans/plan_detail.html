@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% load static %}
-{% load plan_tools %}
 
 {% block extra_css %}
 {% endblock %}
@@ -45,22 +44,51 @@
                         </thead>
                         <tbody>
                            
+                           
+
+
+
                             {% for z in days %}
-                            <tr>
-                                <td>{{ z }}</td>
-                                <td>-</td>
-                                <td>REST</td>
-                                </tr>
-                            {% for sessions in session %}
-                            {% if sessions.week|add:0 == i %}
+                           
+                               
                             
-                            {% if z == sessions.day|add:0 %}
+                            {% for sessions in session %}
+                            
+                            
+                            {% if sessions.week|add:0 == i %}
+                            {% if sessions.day|add:0 == forloop.parentloop.counter %}
+                        
                             <tr>
-                                <td>{{ sessions.day }}</td>
+                                <td>{% for key, value in daynames.items %}
+                                    {% if sessions.day|add:0 == value %}{{key}}{% endif %}
+                                {% endfor %} </td>
                                 <td>{{ sessions.effort }}</td>
                                 <td>{{ sessions.description }}</td>
                                 </tr>
-                                {% endif %}
+                            {% else %}
+                            {% ifchanged %}
+                            
+                            {% else %}
+                            {% ifchanged %}
+                            
+                            {% else %}
+                            
+                            {% ifchanged %}
+                            <tr>
+                                <td>{% for key, value in daynames.items %}
+                                    {% if z|add:0 == value %}{{key}}{% endif %}
+                                {% endfor %} </td>
+                                <td>-</td>
+                                <td>REST</td>
+                                </tr>
+                            
+                                {% endifchanged %}
+                            {% endifchanged %}
+                            {% endifchanged %}
+                            
+
+                            {% endif %} 
+                           
                                                  
                           
 

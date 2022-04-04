@@ -17,7 +17,6 @@ class DistanceAdmin(admin.ModelAdmin):
 
 class SessionAdmin(admin.ModelAdmin):
     list_display = (
-        'type',
         'week',
         'day',
         'effort',

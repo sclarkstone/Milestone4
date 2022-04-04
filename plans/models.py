@@ -31,7 +31,6 @@ class Distance(models.Model):
 
 class Session(models.Model):
     distance = models.ForeignKey('Distance', null=True, blank=True, on_delete=models.SET_NULL)
-    type = models.CharField(max_length=254, null=True, blank=True)
     effort = models.CharField(max_length=254)
     description = models.TextField()
     week = models.CharField(max_length=254)

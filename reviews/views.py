@@ -17,16 +17,16 @@ from products.models import Product, Category
 def reviews(request):
     """ display user reviews"""
     profile = get_object_or_404(UserProfile, user=request.user)
-
+    
     categories = Product.objects.filter(category=5).values_list('name')
 
     orders = profile.orders.all()
-    
     template = 'reviews/reviews.html'
     context = {
         'profile': profile,
         'orders': orders,
         'categories': categories,
+        'reviews': reviews,
     }
     
 
