@@ -79,3 +79,12 @@ class OrderLineItem(models.Model):
 
     def __str__(self):
         return f'SKU {self.product.sku} on order {self.order.order_number}'
+    
+    def get_products(self):
+        return self.product.sku
+    
+    def get_order_number(self):
+        return self.order.order_number
+
+    def get_product_id(self):
+        return self.product.id

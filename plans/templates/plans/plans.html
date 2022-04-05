@@ -47,6 +47,10 @@
                                     {{ item.product.name }} - <a href="{% url 'plan_detail' item.product.id  %}">View plan</a>
                             </td>
                         </tr>
+                       {% else %}
+
+                       no plans yet
+                     
                        
                             {% endif %}
                            

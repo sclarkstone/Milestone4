@@ -21,12 +21,14 @@ def reviews(request):
     categories = Product.objects.filter(category=5).values_list('name')
 
     orders = profile.orders.all()
+    review_completed = Review.objects.all()
+
     template = 'reviews/reviews.html'
     context = {
         'profile': profile,
         'orders': orders,
         'categories': categories,
-        'reviews': reviews,
+        'review_completed': review_completed,
     }
     
 
