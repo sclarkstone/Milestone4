@@ -25,6 +25,9 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=6, decimal_places=2)
     image_url = models.URLField(max_length=1024, null=True, blank=True)
     image = models.ImageField(null=True, blank=True)
+    recommendation_1 = models.ForeignKey('Product', on_delete=models.SET_NULL, null=True, blank=True, related_name='recommendation1')
+    recommendation_2 = models.ForeignKey('Product', on_delete=models.SET_NULL, null=True, blank=True, related_name='recommendation2')
+    recommendation_3 = models.ForeignKey('Product', on_delete=models.SET_NULL, null=True, blank=True, related_name='recommendation3')
 
     def __str__(self):
         return self.name

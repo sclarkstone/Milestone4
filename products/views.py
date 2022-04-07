@@ -7,6 +7,8 @@ from django.db.models import Avg
 
 from .models import Product, Category
 from .forms import ProductForm
+from profiles.models import UserProfile
+from checkout.models import Order, OrderLineItem
 
 from reviews.models import Review
 
@@ -75,10 +77,21 @@ def product_detail(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     review_total = Review.objects.filter(product_id=product_id).count()
     review_sum = Review.objects.filter(product_id=product_id).aggregate(Avg('rating'))['rating__avg']
+    
+    profile_name = get_object_or_404(UserProfile, user=request.user)   
+    orders = profile_name.orders.all()
+    order_item = Order.objects.filter(user_profile=request.user.userprofile)
+    order_items = OrderLineItem.objects.filter(order__user_profile=request.user.userprofile, product=product_id).values_list('product')
+    if not order_items:
+        plan_owned = False
+    else:
+       plan_owned = True 
+
     context = {
         'product': product,
         'review_total': review_total,
         'review_sum': review_sum,
+        'plan_owned': plan_owned,
     }
 
     return render(request, 'products/product_detail.html', context)

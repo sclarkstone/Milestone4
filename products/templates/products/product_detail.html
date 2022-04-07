@@ -13,8 +13,8 @@
     <div class="overlay"></div>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-12 col-md-6 col-lg-4 offset-lg-2">
-                <div class="image-container my-5">
+            <div class="col-12 col-md-6 col-lg-3 offset-lg-2">
+                <div class="image-container my-4">
                     {% if product.image_url %}
                         <a href="{{ product.image_url }}" target="_blank">
                             <img class="card-img-top img-fluid" src="{{ product.image_url }}" alt="{{ product.name }}">
@@ -26,7 +26,7 @@
                     {% endif %}
                 </div>
             </div>
-            <div class="col-12 col-md-6 col-lg-4">
+            <div class="col-12 col-md-6 col-lg-6">
                 <div class="product-details-container mb-5 mt-md-5">
                     <p class="mb-0">{{ product.name }}</p>
                     <p class="lead mb-0 text-left font-weight-bold">£{{ product.price }}</p>
@@ -37,14 +37,17 @@
                         </a>
                     </p>
                     {% endif %}
-                        <small class="text-muted"><i class="fas fa-star mr-1"></i>{% if review_sum == None %}No ratings yet {% else %}{{ review_sum|floatformat }} / 5 (<a href="{% url 'review_detail' product.id %}">{{ review_total }}</a>){% endif %}</small>
+                    </p><small class="text-muted"><i class="fas fa-star mr-1"></i>{% if review_sum == None %}No ratings yet {% else %}{{ review_sum|floatformat }} / 5 (<a href="{% url 'review_detail' product.id %}">{{ review_total }}</a>){% endif %}</small></p>
                     {% if request.user.is_superuser %}
-                        <small class="ml-3">
+                        <p><small class="ml-3">
                             <a href="{% url 'edit_product' product.id %}">Edit</a> | 
                             <a class="text-danger" href="{% url 'delete_product' product.id %}">Delete</a>
-                        </small>
+                        </small></p>
                     {% endif %}
-                    <p class="mt-3">{{ product.description }}</p>
+                </div>
+            </div>
+            <div class="col-12 col-md-10 col-lg-8 offset-lg-2">
+                    <p>{{ product.description }}</p>
                     <form class="form" action="{% url 'add_to_bag' product.id %}" method="POST">
                         {% csrf_token %}
                         <div class="form-row">
@@ -102,6 +105,12 @@
                             <input type="hidden" name="redirect_url" value="{{ request.path }}">
                            
                         {% elif request.user.is_authenticated and product.category.name == 'Plans' %}
+                        {% if plan_owned == True %}
+                        <small class="ml-3">
+                            You already own this plan. Checkout <a href="{% url 'plans' %}">My plans</a> to view your plans.
+                        </small>
+                        {% else %}
+                     
                         <div class="col{% if s %}-12 mt-2{% endif %}">
                             <input class="form-control qty_input"
                             name="quantity" type="hidden" value="1" 
@@ -116,6 +125,7 @@
                             <input type="submit" class="btn btn-black rounded-0 text-uppercase mt-5" value="Add to Bag">
                         </div>
                         <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                        {% endif %}
                         {% else %}
                         <small class="ml-3">
                         <a href="{% url 'account_login' %}">Login</a>  or <a href="{% url 'account_signup' %}">Register</a> to set up a plan.
@@ -126,6 +136,70 @@
                         </div>
                     </form>
                 </div>
+                
+            </div>
+            <div class="col-12 col-md-10 col-lg-10 offset-lg-1">
+               {% if product.recommendation_1.name or product.recommendation_2.name or product.recommendation_3.name %}
+                <hr>
+                <h4>Recommended products</h4>
+                <div class="row">
+                    {% if product.recommendation_1.name %}
+                    <div class="col-sm-4">
+                        <div class="card h-10 border-0">
+                            {% if product.recommendation_1.image_url %}
+                            <a href="{% url 'product_detail' product.recommendation_1.id %}">
+                                <img class="card-img-top img-fluid" src="{{ product.recommendation_1.image_url }}" alt="{{ product.recommendation_1.name }}">
+                            </a>
+                            {% else %}
+                            <a href="{% url 'product_detail' product.recommendation_1.id %}">
+                                <img class="card-img-top img-fluid" src="https://res.cloudinary.com/dyx1tw86r/image/upload/v1645540372/media/noimage.png" alt="{{ product.recommendation_1 }}">
+                            </a>
+                            {% endif %}
+                            <div class="card-body pb-0">
+                                <p class="mb-0">{{ product.recommendation_1.name }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% if product.recommendation_2.name %}
+                    <div class="col-sm-4">
+                        <div class="card h-20 border-0">
+                            {% if product.recommendation_2.image_url %}
+                            <a href="{% url 'product_detail' product.recommendation_2.id %}">
+                                <img class="card-img-top img-fluid" src="{{ product.recommendation_2.image_url }}" alt="{{ product.recommendation_2.name }}">
+                            </a>
+                            {% else %}
+                            <a href="{% url 'product_detail' product.recommendation_2.id %}">
+                                <img class="card-img-top img-fluid" src="https://res.cloudinary.com/dyx1tw86r/image/upload/v1645540372/media/noimage.png" alt="{{ product.recommendation_2 }}">
+                            </a>
+                            {% endif %}
+                            <div class="card-body pb-0">
+                                <p class="mb-0">{{ product.recommendation_2.name }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% if product.recommendation_3.name %}
+                    <div class="col-sm-4">
+                        <div class="card h-20 border-0">
+                            {% if product.recommendation_3.image_url %}
+                            <a href="{% url 'product_detail' product.recommendation_3.id %}">
+                                <img class="card-img-top img-fluid" src="{{ product.recommendation_3.image_url }}" alt="{{ product.recommendation_3.name }}">
+                            </a>
+                            {% else %}
+                            <a href="{% url 'product_detail' product.recommendation_3.id %}">
+                                <img class="card-img-top img-fluid" src="https://res.cloudinary.com/dyx1tw86r/image/upload/v1645540372/media/noimage.png" alt="{{ product.recommendation_3 }}">
+                            </a>
+                            {% endif %}
+                            <div class="card-body pb-0">
+                                <p class="mb-0">{{ product.recommendation_3.name }}</p>
+                            </div>
+                        </div>
+                      </div>
+                  </div>
+                  {% endif %}
+                <hr>
+                {% endif %}
             </div>
         </div>
     </div>
