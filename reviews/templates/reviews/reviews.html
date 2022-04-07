@@ -44,11 +44,11 @@
                       {% for reviews_completed in review_completed %}
                       {% if reviews_completed.product_id|add:0 == item.product_id and reviews_completed.order_number == order.order_number  %}
                     
-                      <td><a href="{% url 'add_review' item.product.id order.order_number %}">Leave review</a></td>
+                      <td><a href="{% url 'add_review' item.product.id order.order_number %}">Update review</a></td>
                     </tr>
                     {% else %}
                    
-                      <td><a href="{% url 'add_review' item.product.id order.order_number %}">Update review</a></td>
+                      <td><a href="{% url 'add_review' item.product.id order.order_number %}">Leave review</a></td>
                     </tr>                      {% endif %}
                      {% endfor %}
    

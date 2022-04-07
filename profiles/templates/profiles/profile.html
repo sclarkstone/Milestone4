@@ -29,11 +29,12 @@
                 <form class="mt-3" action="{% url 'profile' %}" method="POST" id="profile-update-form">
                     {% csrf_token %}
                     {{ form|crispy }}
-                    <button class="btn btn-black rounded-0 text-uppercase float-right">Update Information</button>
+                    <button class="btn btn-black rounded-0 text-uppercase float-right mb-2">Update Information</button>
                 </form>
             </div>
             <div class="col-12 col-lg-6">
                 <p class="text-muted">Order History</p>
+                {% if orders|length > 0 %}
                 <div class="order-history table-responsive">
                     <table class="table table-sm table-borderless">
                         <thead>
@@ -45,6 +46,8 @@
                             </tr>
                         </thead>
                         <tbody>
+
+                          
                             {% for order in orders %}
                                 <tr>
                                     <td>
@@ -67,10 +70,14 @@
                                     </td>
                                     <td>£{{ order.grand_total }}</td>
                                 </tr>
-                            {% endfor %}
+                                {% endfor %}
+                            
                         </tbody>
                     </table>
                 </div>
+                {% else %}
+                You dont have any orders yet. Check out the <a href="{% url 'products' %}?category=Plans">plans </a> or the <a href="{% url 'products' %}?category=Plans">merchandise</a>.
+                {% endif %}
             </div>
         </div>
 {% endblock %}

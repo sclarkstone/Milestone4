@@ -48,11 +48,10 @@
                             </td>
                         </tr>
                        {% else %}
-
-                       no plans yet
-                     
-                       
-                            {% endif %}
+                       {% if forloop.parentloop.first %}
+                       No plans
+                   {%endif%}                            
+                   {% endif %}
                            
                       
                     {% endfor %} 
