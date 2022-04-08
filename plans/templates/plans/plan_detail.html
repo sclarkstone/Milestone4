@@ -36,7 +36,28 @@
             <div class="order-history table-responsive">
                 {{ plans }}
                 {% for key, value in session_dict.items %}
-                WEEK - {{ key }}
+                WEEK - {{ key }}|
+
+                {% for i in days %}
+                {% for x in value %}
+                  {% if i|add:0 == x|add:0 %}
+                   <p>{% for key, value in daynames.items %}{% if i|add:0 == value %}{{ i }}({{ forloop.counter }}) - {{ key }}{% endif %}{% endfor %}</p>
+                  {% else %}
+                  {% if forloop.first %}
+                  {% if i|add:0 == x|add:0 %}
+                  {% else %}
+                    <p>{{ i }}({{ forloop.parentloop.counter }}) - Rest day<p>
+                        {% endif %} 
+                   {% endif %}     
+                  {% endif %}
+              {% endfor %}
+            {% endfor %}
+
+
+
+                {% for z in days %}
+                {{ z }}
+                {% endfor %}
                 {% for url in value %}
                 DAY - {{ url }}
               {% endfor %}

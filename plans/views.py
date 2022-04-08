@@ -18,18 +18,15 @@ from products.models import Product, Category
 def plans(request):
     """ display users plans"""
     profile = get_object_or_404(UserProfile, user=request.user)
-    categories = Product.objects.filter(category=5).values_list('name')
 
-    orders = Order.objects.filter(user_profile=request.user.userprofile)
-     
+    order_items = OrderLineItem.objects.filter(order__user_profile=request.user.userprofile, product__category=5)
+
     template = 'plans/plans.html'
     context = {
         'profile': profile,
-        'orders': orders,
-        'categories': categories,
+        'order_items': order_items,
     }
     
-
     return render(request, template, context)
 
 

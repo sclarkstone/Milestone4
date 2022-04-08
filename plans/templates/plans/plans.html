@@ -37,28 +37,18 @@
                     <table class="table table-sm table-borderless">
                         
                         <tbody>
-                            {% for order in orders %}
-                           
-                            {% for item in order.lineitems.all %}
-                            {% if item.product.name in categories|join:", " %}
-                          
-                            <tr>
-                                <td>
-                                    {{ item.product.name }} - <a href="{% url 'plan_detail' item.product.id  %}">View plan</a>
-                            </td>
-                        </tr>
-                       {% else %}
-                       {% if forloop.parentloop.first %}
-                       No plans
-                   {%endif%}                            
-                   {% endif %}
-                           
-                      
-                    {% endfor %} 
-                    {% empty %}
+                            {% if order_items|length > 0 %}
+                            {% for order_item in order_items %}
+
+<tr>
+    <td>
+        {{ order_item.product.name }} - <a href="{% url 'plan_detail' order_item.product.id  %}">View plan</a>
+</td>
+</tr>
+                            {% endfor %} 
+                    {% else %}
                     You dont have any plans set up yet. Check out the <a href="{% url 'products' %}?category=Plans">plans </a> to set up your first plan.
-    
-                            {% endfor %}
+                    {% endif %}       
                         </tbody>
                     </table>
                     
