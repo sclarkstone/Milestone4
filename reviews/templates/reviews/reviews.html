@@ -29,8 +29,12 @@
               <table class="table table-sm table-borderless">
                   <tbody>                  
 
-                    {% for order in orders %}
-                    {% for item in order.lineitems.all %}
+                    {% for item in order_items %}
+                    {% if  item.product_id|add:0 in review_completed %}
+                    HERE
+                    {% else %}
+                    there
+                    {% endif %}
                     <tr>
                         <td class="col-2 my-1">  {% if item.product.image_url %}
             
@@ -40,21 +44,24 @@
                           {% endif %}
 
                         </td>
-                      <td>{{ item.product.name }} ({{ order.order_number }})</td>
+                      <td>{{ item.product.name }} ({{ item.order.order_number }})</td>
                       <td>{{ order.date }}</td>
-                      {% for reviews_completed in review_completed %}
-                      {% if reviews_completed.product_id|add:0 == item.product_id and reviews_completed.order_number == order.order_number  %}
                     
-                      <td><a href="{% url 'add_review' item.product.id order.order_number %}">Update review</a></td>
-                    </tr>
-                    {% else %}
+                      {% for reviews_completed in review_completed %}
+                      {% if reviews_completed.product_id|add:0 == item.product_id|add:0 and reviews_completed.order_number == item.order.order_number  %}
                    
-                      <td><a href="{% url 'add_review' item.product.id order.order_number %}">Leave review</a></td>
-                    </tr>                      {% endif %}
+                      <td><a href="{% url 'add_review' item.product.id item.order.order_number %}">Update review</a></td>
+                   
+                    {% else %}
+                    
+                      
+                                       
+                    {% endif %}
+          
                      {% endfor %}
-   
+                     <td><a href="{% url 'add_review' item.product.id item.order.order_number %}">Leave review</a></td>
+                     </tr>
                
-                  {% endfor %}
                   {% empty %}
                   You dont have any reviews to leave yet. Make a purchase of a <a href="{% url 'products' %}?category=Plans">plan </a> or <a href="{% url 'products' %}?category=Nutrition,Recovery,Hydration,Attire">merchandise </a> first.
 

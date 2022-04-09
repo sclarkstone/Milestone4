@@ -18,17 +18,14 @@ def reviews(request):
     """ display user reviews"""
     profile = get_object_or_404(UserProfile, user=request.user)
     
-    categories = Product.objects.filter(category=5).values_list('name')
-
-    orders = profile.orders.all()
-    review_completed = Review.objects.all()
+    review_completed = Review.objects.filter(user=request.user.userprofile)
+    order_items = OrderLineItem.objects.filter(order__user_profile=request.user.userprofile)
 
     template = 'reviews/reviews.html'
     context = {
         'profile': profile,
-        'orders': orders,
-        'categories': categories,
         'review_completed': review_completed,
+        'order_items': order_items,
     }
     
 
@@ -63,7 +60,7 @@ def add_review(request, product_id, order_number):
     if request.method == 'POST':
         form = UserReviewForm(request.POST)
         if form.is_valid():
-            form.instance.user = profile.user
+            form.instance.user = profile
             form.instance.product_id = product.id
             form.instance.order_number = order.order_number
             form.save()
