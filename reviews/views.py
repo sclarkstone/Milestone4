@@ -19,13 +19,20 @@ def reviews(request):
     profile = get_object_or_404(UserProfile, user=request.user)
     
     review_completed = Review.objects.filter(user=request.user.userprofile)
-    order_items = OrderLineItem.objects.filter(order__user_profile=request.user.userprofile)
+    products = Product.objects.all()
+
+    review_complete = Review.objects.filter(user=request.user.userprofile).values('product_id')
+    review_complete2 = Review.objects.filter(user=request.user.userprofile).values('order_number')
+    reviews_needed = OrderLineItem.objects.filter(order__user_profile=request.user.userprofile).exclude(product__pk__in = review_complete, order__order_number__in = review_complete2).all()
 
     template = 'reviews/reviews.html'
     context = {
         'profile': profile,
+        'products': products,
         'review_completed': review_completed,
-        'order_items': order_items,
+        'reviews_needed': reviews_needed,
+        'review_complete': review_complete,
+        'review_complete2': review_complete2,
     }
     
 
@@ -84,11 +91,38 @@ def add_review(request, product_id, order_number):
 @login_required
 def delete_review(request, product_id, order_number):
     """ Delete a review """
-    if not request.user.is_superuser:
-        messages.error(request, 'Sorry, only store owners can do that.')
-        return redirect(reverse('home'))
 
-    review = get_object_or_404(Review, product_id=product_id, order_number=order_number)
+    review = Review.objects.filter(user=request.user.userprofile, product_id=product_id, order_number=order_number).first()
     review.delete()
     messages.success(request, 'Review deleted!')
     return redirect(reverse('reviews'))
+
+
+@login_required
+def edit_review(request, product_id, order_number):
+    """ Edit a review """
+    review = Review.objects.filter(user=request.user.userprofile, product_id=product_id, order_number=order_number).first()
+    order = get_object_or_404(Order, order_number=order_number)
+    product = get_object_or_404(Product, pk=product_id)
+    profile = get_object_or_404(UserProfile, user=request.user)
+    if request.method == 'POST':
+        form = UserReviewForm(request.POST, request.FILES, instance=review)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Successfully updated review!')
+            return redirect(reverse('reviews'))
+        else:
+            messages.error(request, 'Failed to update review. Please ensure the form is valid.')
+    else:
+        form = UserReviewForm(instance=review)
+        messages.info(request, f'You are editing review for {product.name}')
+
+    template = 'reviews/edit_review.html'
+    context = {
+        'form': form,
+        'product': product,
+        'profile': profile,
+        'order': order,
+    }
+
+    return render(request, template, context)

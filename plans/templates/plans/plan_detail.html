@@ -26,7 +26,7 @@
         <p>Each session should begin with a warm up of a {{ distance.instructions }}. Check out our <a
                 href="https://www.youtube.com" target="_blank" rel="noopener">YouTube</a> channel for warm up sessions.
         </p>
-        <p>Rest days can be used for cross training (cycling or swimming), walking or complete rest. Check out our <a
+        <p>REST days can be used for cross training (cycling or swimming), walking or complete rest. Check out our <a
                 href="https://www.youtube.com" target="_blank" rel="noopener">YouTube</a> channel for 'no equipment
             needed' sessions.</p>
 
@@ -34,119 +34,92 @@
     <div class="row">
         <div class="col-12 col-lg-12">
             <div class="order-history table-responsive">
-                {{ plans }}
-                {% for key, value in session_dict.items %}
-                WEEK - {{ key }}|
-
-                {% for i in days %}
-                {% for x in value %}
-                  {% if i|add:0 == x|add:0 %}
-                   <p>{% for key, value in daynames.items %}{% if i|add:0 == value %}{{ i }}({{ forloop.counter }}) - {{ key }}{% endif %}{% endfor %}</p>
-                  {% else %}
-                  {% if forloop.first %}
-                  {% if i|add:0 == x|add:0 %}
-                  {% else %}
-                    <p>{{ i }}({{ forloop.parentloop.counter }}) - Rest day<p>
-                        {% endif %} 
-                   {% endif %}     
-                  {% endif %}
-              {% endfor %}
-            {% endfor %}
-
-
-
-                {% for z in days %}
-                {{ z }}
-                {% endfor %}
-                {% for url in value %}
-                DAY - {{ url }}
-              {% endfor %}
-              {% endfor %}
+          
                
-            
                 {% for i in duration %}
-                <h3>Week {{ i }}</h3>
-
-                <table class="table table-sm table-borderless">
+                <h3>WEEK - {{ i }}</h3>
+                <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>Session</th>
-                            <th>Pace</th>
+                            <th>Day</th>
                             <th>Description</th>
-
+                            <th>Effort</th>
                         </tr>
                     </thead>
                     <tbody>
+{% for a in sessionListMonday %}
+{% if a.week|add:0 == i|add:0 and a.day|add:0 == 1 %}
+<tr>
+    <td>{% for key, value in daynames.items %}{% if value == a.day|add:0 %}{{ key }}{% endif %}{% endfor %}</td>
+    <td>{{ a.description }}</td>
+    <td>{{ a.effort }}</td>
+</tr>
+{% endif %}            
+{% endfor %}
 
+{% for b in sessionListTuesday %}
+{% if b.week|add:0 == i|add:0 and b.day|add:0 == 2 %}
+<tr>
+    <td>{% for key, value in daynames.items %}{% if value == b.day|add:0 %}{{ key }}{% endif %}{% endfor %}</td>
+    <td>{{ b.description }}</td>
+    <td>{{ b.effort }}</td>
+</tr>{% endif %}
+{% endfor %}
 
+{% for c in sessionListWednesday %}
+{% if c.week|add:0 == i|add:0 and c.day|add:0 == 3 %}
+<tr>
+    <td>{% for key, value in daynames.items %}{% if value == c.day|add:0 %}{{ key }}{% endif %}{% endfor %}</td>
+    <td>{{ c.description }}</td>
+    <td>{{ c.effort }}</td>
+</tr>{% endif %}
+{% endfor %}
 
+{% for d in sessionListThursday %}
+{% if d.week|add:0 == i|add:0 and d.day|add:0 == 4 %}
+<tr>
+    <td>{% for key, value in daynames.items %}{% if value == d.day|add:0 %}{{ key }}{% endif %}{% endfor %}</td>
+    <td>{{ d.description }}</td>
+    <td>{{ d.effort }}</td>
+</tr>{% endif %}
+{% endfor %}
 
+{% for e in sessionListFriday %}
+{% if e.week|add:0 == i|add:0 and e.day|add:0 == 5 %}
+<tr>
+    <td>{% for key, value in daynames.items %}{% if value == e.day|add:0 %}{{ key }}{% endif %}{% endfor %}</td>
+    <td>{{ e.description }}</td>
+    <td>{{ e.effort }}</td>
+</tr>{% endif %}
+{% endfor %}
 
-                        {% for z in days %}
-                        
-                        
-                        {% for sessions in session %}
-                       
-                        {% if sessions.week|add:0 == i %}
+{% for f in sessionListSaturday %}
+{% if f.week|add:0 == i|add:0 and f.day|add:0 == 6 %}
+<tr>
+    <td>{% for key, value in daynames.items %}{% if value == f.day|add:0 %}{{ key }}{% endif %}{% endfor %}</td>
+    <td>{{ f.description }}</td>
+    <td>{{ f.effort }}</td>
+</tr>{% endif %}
+{% endfor %}
 
-                        {% if z == sessions.day|add:0 %}
-                        
-                        {% for key, value in daynames.items %}
-                        {% if sessions.day|add:0 == value %}
-                    
-                        {% else %}
-                
-                      
-                        {% endif %}
-                        {% endfor %} 
-                        <tr>
-                            <td>
-                                {% for key, value in daynames.items %}
-                                {% if sessions.day|add:0 == value %}
-                                {{key}}
-                                {% endif %}
-                                {% endfor %} </td>
-                            <td>{{ sessions.effort }}</td>
-                            <td>{{ sessions.description }}</td>
-                        </tr>
+{% for g in sessionListSunday %}
+{% if g.week|add:0 == i|add:0 and g.day|add:0 == 7 %}
+<tr>
+    <td>{% for key, value in daynames.items %}{% if value == g.day|add:0 %}{{ key }}{% endif %}{% endfor %}</td>
+    <td>{{ g.description }}</td>
+    <td>{{ g.effort }}</td>
+</tr>{% endif %}
+{% endfor %}
 
-                        
-
-                        {% else %}
-                        {% ifchanged forloop.parentloop.counter %}
-                        
-                        {% for key, value in daynames.items %}
-
-                        {% if z|add:0 == value %}
-                        <tr>
-                            <td>
-
-                                {{key}}
-                            </td>
-                            <td>-</td>
-                            <td>REST</td>
-                        </tr>
-                        {% endif %}
-                        {% endfor %}
-
-                        {% endifchanged %}
-                        {% endif %}
-
-
-
-
-                  
-
-
-                        {% endif %}
-                        {% endfor %}
-                     
-                        {% endfor %}
-
-                    </tbody>
-                </table>
-
-                {% endfor %}
+</tbody>
+</table>       
+      
+              
+              {% endfor %}
+               
+            
+               
+            </div>
             </div>
         </div>
         {% endblock %}

@@ -38,3 +38,9 @@ class Session(models.Model):
 
     def __str__(self):
         return self.effort
+    
+    def __str__(self):
+        return self.week
+
+    def __str__(self):
+        return self.day

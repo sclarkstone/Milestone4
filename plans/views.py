@@ -48,13 +48,64 @@ def plan_detail(request, product_id):
     daynames = {'Monday' : 1, 'Tuesday' : 2, 'Wednesday' : 3, 'Thursday' : 4, 'Friday' : 5, 'Saturday' : 6, 'Sunday' : 7}
 
     days = {1,2,3,4,5,6,7}
-    session_dict = defaultdict(list)
-
-    for week, day in session.values_list('week', 'day'):
-        session_dict[week].append(day)
     
+    weeks = range(1,int(distance.duration)+1)
 
+    sessionListMonday = []
+    sessionListTuesday = []
+    sessionListWednesday = []
+    sessionListThursday = []
+    sessionListFriday = []
+    sessionListSaturday = []
+    sessionListSunday = []
 
+    for counter, duration in enumerate(weeks, start=1):
+        monday = Session.objects.filter(day=1, week=counter, distance__product_id=product_id).values('description', 'effort', 'day', 'week')
+        tuesday = Session.objects.filter(day=2, week=counter, distance__product_id=product_id).values('description', 'effort', 'day', 'week')
+        wednesday = Session.objects.filter(day=3, week=counter, distance__product_id=product_id).values('description', 'effort', 'day', 'week')
+        thursday = Session.objects.filter(day=4, week=counter, distance__product_id=product_id).values('description', 'effort', 'day', 'week')
+        friday = Session.objects.filter(day=5, week=counter, distance__product_id=product_id).values('description', 'effort', 'day', 'week')
+        saturday = Session.objects.filter(day=6, week=counter, distance__product_id=product_id).values('description', 'effort', 'day', 'week')
+        sunday = Session.objects.filter(day=7, week=counter, distance__product_id=product_id).values('description', 'effort', 'day', 'week')
+        if not monday:
+            MondayList = list([{'description': 'REST', 'day': 1, 'week': counter}])
+        else:
+            MondayList = list(monday)
+        if not tuesday:
+            TuesdayList = list([{'description': 'REST', 'day': 2, 'week': counter}])
+        else:
+            TuesdayList = list(tuesday)
+        if not wednesday:
+            WednesdayList = list([{'description': 'REST', 'day': 3, 'week': counter}])
+        else:
+            WednesdayList = list(wednesday)
+        if not thursday:
+            ThursdayList = list([{'description': 'REST', 'day': 4, 'week': counter}])
+        else:
+            ThursdayList = list(thursday)
+        if not friday:
+            FridayList = list([{'description': 'REST', 'day': 5, 'week': counter}])
+        else:
+            FridayList = list(friday)
+        if not saturday:
+            SaturdayList = list([{'description': 'REST', 'day': 6, 'week': counter}])
+        else:
+            SaturdayList = list(saturday)
+        if not sunday:
+            SundayList = list([{'description': 'REST', 'day': 7, 'week': counter}])
+        else:
+            SundayList = list(sunday)
+        
+        sessionListMonday += MondayList
+        sessionListTuesday += TuesdayList
+        sessionListWednesday += WednesdayList
+        sessionListThursday += ThursdayList
+        sessionListFriday += FridayList
+        sessionListSaturday += SaturdayList
+        sessionListSunday += SundayList    
+
+    weeks = Distance.objects.filter(product_id=product_id)
+    
     context = {
         'profile': profile,
         'session': session,
@@ -62,12 +113,19 @@ def plan_detail(request, product_id):
         'duration': range(1,int(distance.duration)+1),
         'days': days,
         'daynames': daynames,
-        'session_dict': dict(session_dict),
         'order_item': order_item,
         'orders': orders,
         'order_items': order_items,
         'order_item': order_items,
         'plans': plans,
+        'weeks': weeks,
+        'sessionListMonday': sessionListMonday,
+        'sessionListTuesday': sessionListTuesday,
+        'sessionListWednesday': sessionListWednesday,
+        'sessionListThursday': sessionListThursday,
+        'sessionListFriday': sessionListFriday,
+        'sessionListSaturday': sessionListSaturday,
+        'sessionListSunday': sessionListSunday,
 
 
 
