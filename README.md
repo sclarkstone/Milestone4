@@ -115,6 +115,8 @@ heroku - admin css not showing. in seetings file STATICFILES_DIRS = [os.path.joi
 
 django error 'Reverse for 'add_review' with no arguments not found'. Although i had the product_id parameter in the url.py, views.py and reviews.html template i had not got it in the form POST action on the add_review template itself.
 
+using the search - local variable 'plans' referenced before assignment error. needed the 'plans' if inside the search if
+
 # first mentor meeting
 
 # second mentor meeting
