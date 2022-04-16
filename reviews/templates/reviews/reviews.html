@@ -23,7 +23,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-8 col-md-8 col-lg-8 offset-lg-2">
+        <div class="col-10 col-md-10 col-lg-10 offset-1">
             
             <div class="order-history table-responsive">
               <table class="table table-sm table-borderless">
@@ -41,7 +41,7 @@
                           {% endif %}
 
                         </td>
-                      <td>{{ item.product.name }} ({{ item.order.order_number }})</td>                  
+                      <td>{{ item.product.name }}</td>                  
                      
                      <td><a href="{% url 'add_review' item.product.id item.order.order_number %}">Leave review</a></td>
                      </tr>
