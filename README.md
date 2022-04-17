@@ -105,6 +105,15 @@ then add cloud_name, CLOUDINARY_URL, api_key and api_secret to git pod and herok
 python3 manage.py collectstatic to push static files
 
 
+During development deployment method changed;
+a number of user login tokens for Heroku had been compromised in a security attack. In response, Heroku have removed the automatic deployment method. 
+new mthod
+heroku login -i
+email address and use api key for password (get from heroku,account settings, reveal api key)
+Run the following command: 'heroku git:remote -a milestone4-sclarkstone'. This will link the app to your Gitpod terminal.
+git push heroku main
+
+
 # testing
 to see all errors in all files - python3 -m flake8
 

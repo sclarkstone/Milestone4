@@ -122,18 +122,17 @@ WSGI_APPLICATION = 'milestone4.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-#if 'DATABASE_URL' in os.environ:
-DATABASES = {
- #       'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
-    'default': dj_database_url.parse('postgres://vkawgfopimpzdf:3e597dddc737ce378afae043a1ce590acabba8a7e6ac7182ee8f9df2477070fb@ec2-52-31-219-113.eu-west-1.compute.amazonaws.com:5432/daj8gmp6u3ncf2')
-}
-#else:
- #   DATABASES = {
-  #     'default': {
-   #        'ENGINE': 'django.db.backends.sqlite3',
-    #       'NAME': BASE_DIR / 'db.sqlite3',
-     #  }
-   #}
+if 'DATABASE_URL' in os.environ:
+    DATABASES = {
+        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+    }
+else:
+    DATABASES = {
+       'default': {
+           'ENGINE': 'django.db.backends.sqlite3',
+           'NAME': BASE_DIR / 'db.sqlite3',
+       }
+   }
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
@@ -175,7 +174,7 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 CLOUDINARY_STORAGE = { 'CLOUDINARY_URL': os.environ.get('CLOUDINARY_URL')}
 
-STATIC_URL = 'https://res.cloudinary.com/dyx1tw86r/raw/upload/v1650116689/static/'
+STATIC_URL = '/static/'
 STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
 STATICFILES_DIRS = os.path.join(BASE_DIR, 'static'),
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
