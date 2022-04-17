@@ -1,3 +1,7 @@
+# RUN YOUR WAY
+
+The live link can be found here - [site link](https://milestone4-sclarkstone.herokuapp.com/)
+
 ## setup
 'pip3 install Django==3.2' to install Django
 'django-admin startproject milestone4 .' to set up basic folder structure and files for Django
@@ -116,6 +120,9 @@ heroku - admin css not showing. in seetings file STATICFILES_DIRS = [os.path.joi
 django error 'Reverse for 'add_review' with no arguments not found'. Although i had the product_id parameter in the url.py, views.py and reviews.html template i had not got it in the form POST action on the add_review template itself.
 
 using the search - local variable 'plans' referenced before assignment error. needed the 'plans' if inside the search if
+
+when live on heroku - 'MIME type ('text/html') is not a supported stylesheet MIME type, and strict MIME checking is enabled' - corrected link on base template to use cloudinary and not local static file.
+
 
 # first mentor meeting
 
