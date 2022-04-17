@@ -23,8 +23,6 @@ def reviews(request):
 
     review_complete = Review.objects.filter(user=request.user.userprofile).values('product_id')
     review_complete2 = Review.objects.filter(user=request.user.userprofile).values('order_number')
-    new_value = int(review_complete[0]['product_id'])
-    print(type(new_value))
     reviews_needed = OrderLineItem.objects.filter(order__user_profile=request.user.userprofile).exclude(product__pk__in=review_complete, order__order_number__in=review_complete2).all()
 
     template = 'reviews/reviews.html'
