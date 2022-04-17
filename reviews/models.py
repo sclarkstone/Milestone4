@@ -11,7 +11,7 @@ class Review(models.Model):
     user = models.ForeignKey(UserProfile, on_delete=models.SET_NULL,
                                      null=True, blank=True, related_name='userreview')
     subject = models.CharField(max_length=20, null=True, blank=True)
-    review = models.TextField(null=False, blank=False)
+    review = models.TextField(null=False, blank=False, default='This review has been left blank')
     rating = models.DecimalField(validators=[MinValueValidator(0),
                                        MaxValueValidator(5)], default=0, max_digits=4, decimal_places=1, null=False, blank=False)
     product_id = models.CharField(max_length=3, null=False, blank=True)

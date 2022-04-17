@@ -132,6 +132,8 @@ using the search - local variable 'plans' referenced before assignment error. ne
 
 when live on heroku - 'MIME type ('text/html') is not a supported stylesheet MIME type, and strict MIME checking is enabled' - corrected link on base template to use cloudinary and not local static file.
 
+'operator does not exist: bigint = character varying LINE 1: ...d" = 2) AND "checkout_orderlineitem"."product_id" IN (SELECT'
+
 
 # first mentor meeting
 
