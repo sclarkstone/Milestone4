@@ -52,7 +52,7 @@ def review_detail(request, product_id):
         'product': product,
         'review': review,
         'review_total': review_total,
-        'review_sum': review_sum,
+        'review_sum': (round(review_sum, 1)),
     }
 
     return render(request, template, context)
