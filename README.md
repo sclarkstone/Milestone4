@@ -26,6 +26,7 @@ This site is targeted at people who are looking to reach specific distance goals
     * Accessibility - Links do not have a discernible name - add title text and aria-hidden="true" to the font aweseome social mead icons in the footer.
     * Accessibility - Buttons do not have an accessible name - add name text to the search button.
     * Accessibility - Heading elements are not in a sequentially-descending order - removed the un used h4 around the homepage button.
+    * Best Practices - Includes front-end JavaScript libraries with known security vulnerabilities - updated jquery CDN from version 3.4.1 to 3.6.0
 
 * JSHint was used to to detect errors and potential problems in your JavaScript code.
 * Python -  using [pep8online](http://pep8online.com/) - app.py
