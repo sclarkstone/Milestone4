@@ -1,8 +1,70 @@
 # RUN YOUR WAY
+--------------- TURN DEBUG TO FALSE --------------------------------
 
 The live link can be found here - [site link](https://milestone4-sclarkstone.herokuapp.com/)
 
-## setup
+This site is targeted at people who are looking to reach specific distance goals. The site offers merchandise and running plans where a registered account is required to purchase the plans so that the detailed plans can be accessed. Honest reviews for each product and plan is encouraged and reviews can be read by other users.  
+
+![Mock up screen shots](https://res.cloudinary.com/dyx1tw86r/image/upload/media/ScreenMockUpsFinal.png)
+
+## User experience (UX)
+
+### Strategy
+### Scope
+#### User stories
+### Structure
+### Skeleton
+### Surface
+* Following the C.R.A.P (consistancy, repetition, alignment and proximity) design methodology the pages will all have the same nav bar, footer and color scheme. This will help create a positive user experience.
+
+## Design and features
+## Testing
+* [Chrome developer tools](https://developer.chrome.com/docs/devtools/) on the browser was used to see any errors on the pages.
+* [Chrome developer tools](https://developer.chrome.com/docs/devtools/) device toggle toolbar was utilised to view the site via emulators of different screen sizes and devices.
+* Chrome Lighthouse audit (Chrome -> dev tools -> Lighthouse) was run to for performance, accessibility, SEO and best practices.
+    
+    * Accessibility - Links do not have a discernible name - add title text and aria-hidden="true" to the font aweseome social mead icons in the footer.
+    * Accessibility - Buttons do not have an accessible name - add name text to the search button.
+* JSHint was used to to detect errors and potential problems in your JavaScript code.
+* Python -  using [pep8online](http://pep8online.com/) - app.py
+* in Gitpod - to see all errors in all files - python3 -m flake8
+
+### User Acceptance Testing
+
+The UAT was carried out on desktop, tablet and mobile screen sizes. The UAT was also caried out on Chrome, firefox and Edge. This was to ensure cross broswer and cross device compatability and to acieve a positive user experience. 
+* HTML - using W3C validator
+
+
+* CSS - using [W3C Jigsaw](https://jigsaw.w3.org/css-validator)  By direct input - /static/css/base.css. Running the w3c validator the following message came 'Congratulations! No Error Found.'.
+
+* JavaScript using JSHint - index.html
+
+### First mentor meeting
+* discussed the concept of the website and the best way to do the database design. Initially i was planning to have 3 seperate tables for sessions, effort and type but it was recommended that this was not needed and to combine them into one.
+
+### Second mentor meeting
+* compress all images as they were taking too long to load
+* change 'products' to 'plans for plans page
+* add a footer
+
+### Third mentor meeting
+
+### Bugs
+* chrome error - jquery must be before bootstrap. the CDN link had stopped working.
+
+* deploying to heroku - ModuleNotFoundError: No module named 'application'. amended procfile to fix
+* deploying to heroku - Failed to find attribute 'app' in 'milestone4'. amended procfile to fix
+* heroku - admin css not showing. in seetings file STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')] corrected to STATICFILES_DIRS = os.path.join(BASE_DIR, 'static'),
+* django error 'Reverse for 'add_review' with no arguments not found'. Although i had the product_id parameter in the url.py, views.py and reviews.html template i had not got it in the form POST action on the add_review template itself.
+* using the search - local variable 'plans' referenced before assignment error. needed the 'plans' if inside the search if
+* when live on heroku - 'MIME type ('text/html') is not a supported stylesheet MIME type, and strict MIME checking is enabled' - corrected link on base template to use cloudinary and not local static file.
+* 'operator does not exist: bigint = character varying LINE 1: ...d" = 2) AND "checkout_orderlineitem"."product_id" IN (SELECT'
+
+## Desirable features
+
+
+## Set up
+
 'pip3 install Django==3.2' to install Django
 'django-admin startproject milestone4 .' to set up basic folder structure and files for Django
 'touch .gitignore' to create ignore file and then add to file *.sqlite3, *.pyc
@@ -17,7 +79,7 @@ git add .
 git commit -m "commit message"
 git push
 
-## authentication set up
+### authentication set up
 
 'pip3 install django-allauth==0.41.0'
 add 'import os' to top of settings.py file
@@ -29,15 +91,15 @@ python3 manage.py migrate
 
 'pip3 freeze > requirements.txt'
 
-## templates
+### templates
 cp -r ../.pip-modules/lib/python3.8/site-packages/allauth/templates/* ./templates/allauth/
 
 python3 manage.py startapp home
 
-## font awesome
+### font awesome
 sign up for free account and get kit code. put this in the base.html template corejs block. 
 
-## database
+### database
 pip3 install pillow to allow url image use
 add products to installed apps in settings.py
 python3 manage.py makemigrations --dry-run
@@ -50,25 +112,18 @@ tables can now be seen in admin area and data can be manually added
 
 
 
-## photos
-https://www.pexels.com/
 
-ccs tricks
+### Payment
 
-checkout forms
-pip3 install django-crispy-forms
-pip3 install django-countries - for drop down of country codes
+#### checkout forms
+* run command 'pip3 install django-crispy-forms'
+* run command 'pip3 install django-countries' - for drop down of country codes
 
-checkout payment
-pip3 install stripe
+#### checkout payment
+* run command 'pip3 install stripe'
 
-set environment variables
-export STRIPE_PUBLIC_KEY=pk_test_51KRfdfDe1QIHYXng2t6CgZWkRXFUlsboPHbBv69k34W7UqqsWFGbaw9orO2jq6Ttufizc8XVUBrnHLfkPS0o68hI00LFO8BzEI
-export STRIPE_SECRET_KEY=sk_test_51KRfdfDe1QIHYXngUwFlxFjissqNiIwkrncvaG2OU9akgMk1bKnT3pbyTW1bB5DtUx5dq8gdme6MpuBjNb2dJudF00qBV5tT0a
-
-export STRIPE_WH_SECRET=whsec_vQBjhnLPA6FjFzFWfZxRizJebmNinPLc
-
-not permananent and would need to be re exported everytime the workspace is started. so save them in gotpod (settings, variables)
+#### set environment variables
+* save STRIPE_PUBLIC_KEY, STRIPE_SECRET_KEY and STRIPE_WH_SECRET in gitpod (settings, variables) and Heroku (settings, config vars)
 
 test card details
 name - test
@@ -86,58 +141,60 @@ CVC - 242
 zip - 44242
 
 
-# deployment
-heroku - new app. provisipn postgres free
-pip3 install dj_database_url
-pip3 install psycopg2-binary
-pip3 install gunicorn
+## Deployment
+Use [Heroku] (https://www.heroku.com/) to host, first set up an account.
+* heroku - add new app and provisipn postgres free
+* run command 'pip3 install dj_database_url'
+* run command 'pip3 install psycopg2-binary'
+* run command 'pip3 install gunicorn'
+* run command 'heroku login -i'. email address and use api key for password (get from heroku,account settings, reveal api key)
+* run command 'config:set DISABLE_COLLECTSTATIC=1 --app milestone4-sclarkstone'
+* run command 'git:remote -a milestone4-sclarkstone'
+* run command 'git checkout -b master'
+* run command 'git push heroku master'
+* Go to [miniwebtool] (https://miniwebtool.com/django-secret-key-generator/) to get secrete key for heroku
 
-heroku login -i
-email address and use api key for password (get from heroku,account settings, reveal api key)
-heroku config:set DISABLE_COLLECTSTATIC=1 --app milestone4-sclarkstone
-heroku git:remote -a milestone4-sclarkstone
-git checkout -b master
-git push heroku master
-https://miniwebtool.com/django-secret-key-generator/ to get secrete key for heroku
-
-for static files set up cloudinary account and pip3 install cloudinary,pip3 install django-cloudinary-storage
-then add cloud_name, CLOUDINARY_URL, api_key and api_secret to git pod and heroku variables
-python3 manage.py collectstatic to push static files
+for static files set up a [cloudinary] (https://cloudinary.com/) account
+* run command 'pip3 install cloudinary'
+* run command 'pip3 install django-cloudinary-storage'
+* then add cloud_name, CLOUDINARY_URL, api_key and api_secret to git pod and heroku variables
+* run command 'python3 manage.py collectstatic' to push static files
 
 
 During development deployment method changed;
-a number of user login tokens for Heroku had been compromised in a security attack. In response, Heroku have removed the automatic deployment method. 
-new mthod
-heroku login -i
-email address and use api key for password (get from heroku,account settings, reveal api key)
-Run the following command: 'heroku git:remote -a milestone4-sclarkstone'. This will link the app to your Gitpod terminal.
-git push heroku main
+A number of user login tokens for Heroku had been compromised in a security attack. In response, Heroku have removed the automatic deployment method. 
+The new method then became;
+* run command 'heroku login -i' email address and use api key for password (get from heroku,account settings, reveal api key)
+* run command 'heroku git:remote -a milestone4-sclarkstone'. This will link the app to your Gitpod terminal.
+* run command 'git push heroku main'
 
 
-# testing
-to see all errors in all files - python3 -m flake8
+## Credits
 
+### Layout
+* github - code institute/gitpod-full-template
 
-# bugs
-chrome error - jquery must be before bootstrap. the CDN link had stopped working.
+* [Bootstrap](https://getbootstrap.com/)
 
-deploying to heroku - ModuleNotFoundError: No module named 'application'. amended procfile to fix
-deploying to heroku - Failed to find attribute 'app' in 'milestone4'. amended procfile to fix
-heroku - admin css not showing. in seetings file STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')] corrected to STATICFILES_DIRS = os.path.join(BASE_DIR, 'static'),
+    * navbar
+    * grid layout with rows and columns
+    * responsivness and styling
+    * Cards
+    * Table layout
 
+* [Code institute](https://learn.codeinstitute.net/) course material. Specifically the Boutique Ado project for the log in, register and logout authentication and Stripe payment set up. This module was also used to inspire the fixtures and data structure along with the add, edit and delete management forms and actions.
 
-django error 'Reverse for 'add_review' with no arguments not found'. Although i had the product_id parameter in the url.py, views.py and reviews.html template i had not got it in the form POST action on the add_review template itself.
+### Content
 
-using the search - local variable 'plans' referenced before assignment error. needed the 'plans' if inside the search if
+* The icons in the forms were taken from [Font awesome](https://fontawesome.com/)
 
-when live on heroku - 'MIME type ('text/html') is not a supported stylesheet MIME type, and strict MIME checking is enabled' - corrected link on base template to use cloudinary and not local static file.
+* [google fonts](https://fonts.google.com/) was used to give the project a more professional and unique feel. Google fonts gave fonts that go together and as i had already seen the Lanto font in use on the Code institute 'love running' project and felt it fit in well with my project i went with Lant and Roboto. 
 
-'operator does not exist: bigint = character varying LINE 1: ...d" = 2) AND "checkout_orderlineitem"."product_id" IN (SELECT'
+* [Website Mockup Generator](https://websitemockupgenerator.com/) was used to generate the multi device website mock up used in the readme file.
 
+* [material.io](https://material.io/resources/color/#!/?view.left=1&view.right=1&primary.color=0277bd]) was used to check accessibility of text colours on background colours. Also used to find complemetary colours. This is where i decided on my combination of white, black and grey backgrounds with complimentary text. Credit to my mentor Akshat for showing me this resource. 
 
-# first mentor meeting
+### Media
 
-# second mentor meeting
-- compress images
-- change 'products' to 'plans for plans page
-- add a footer
+* [TinyPNG] (https://tinypng.com/) was used to compress all images to reduce the load time of the site.
+* [pexels] (https://www.pexels.com/) - for free use of running photos
