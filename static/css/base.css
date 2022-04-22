@@ -354,3 +354,9 @@ footer {
     padding-left: 2%;
     color: #fff;
 }
+
+/* ------------------------- product cards */
+
+.img-fluid {
+    height: 200px;
+}

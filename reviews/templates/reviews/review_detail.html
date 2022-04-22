@@ -39,9 +39,11 @@
                         <div class="row">
                             <div class="col-12">
                                 {% for reviews in review %}
-                                <p>{{ reviews.user }} - {{ reviews.date }}</p>
                                 <p>{{ reviews.rating }} / 5</p>
+                                <h5>{{ reviews.subject }}</h5>
                                 <p>{{ reviews.review }}</p>
+                                <p><small>Reviewed on {{ reviews.date }} by {{ reviews.user }}</small></p>
+
                                 <hr>
                                 {% endfor %}
                 </div>

@@ -52,6 +52,8 @@ The UAT was carried out on desktop, tablet and mobile screen sizes. The UAT was 
 * add a footer
 
 ### Third mentor meeting
+* set a fixed height on the products cards so they all appear the same giving a uniform and symetrical look.
+* made review subject is review details bolder
 
 ### Bugs
 * chrome error - jquery must be before bootstrap. the CDN link had stopped working.

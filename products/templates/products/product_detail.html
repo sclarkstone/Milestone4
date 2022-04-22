@@ -139,55 +139,50 @@
                 <h4>Recommended products</h4>
                 <div class="row">
                     {% if product.recommendation_1.name %}
-                    <div class="col-sm-4">
-                        <div class="card h-10 border-0">
+                    <div class="col-sm-3">
+                        <div class="card bg-light mb-3">
+                            <a href="{% url 'product_detail' product.recommendation_1.id %}">
                             {% if product.recommendation_1.image_url %}
-                            <a href="{% url 'product_detail' product.recommendation_1.id %}">
                                 <img class="card-img-top img-fluid" src="{{ product.recommendation_1.image_url }}" alt="{{ product.recommendation_1.name }}">
-                            </a>
                             {% else %}
-                            <a href="{% url 'product_detail' product.recommendation_1.id %}">
                                 <img class="card-img-top img-fluid" src="https://res.cloudinary.com/dyx1tw86r/image/upload/v1645540372/media/noimage.png" alt="{{ product.recommendation_1 }}">
-                            </a>
                             {% endif %}
-                            <div class="card-body pb-0">
+                            <div class="card-header">
                                 <p class="mb-0">{{ product.recommendation_1.name }}</p>
+                            </a>
                             </div>
                         </div>
                     </div>
                     {% endif %}
                     {% if product.recommendation_2.name %}
-                    <div class="col-sm-4">
-                        <div class="card h-20 border-0">
+                    <div class="col-sm-3">
+                        <div class="card bg-light mb-3">
+                            <a href="{% url 'product_detail' product.recommendation_2.id %}">
                             {% if product.recommendation_2.image_url %}
-                            <a href="{% url 'product_detail' product.recommendation_2.id %}">
                                 <img class="card-img-top img-fluid" src="{{ product.recommendation_2.image_url }}" alt="{{ product.recommendation_2.name }}">
-                            </a>
                             {% else %}
-                            <a href="{% url 'product_detail' product.recommendation_2.id %}">
                                 <img class="card-img-top img-fluid" src="https://res.cloudinary.com/dyx1tw86r/image/upload/v1645540372/media/noimage.png" alt="{{ product.recommendation_2 }}">
-                            </a>
                             {% endif %}
-                            <div class="card-body pb-0">
+                            <div class="card-header">
                                 <p class="mb-0">{{ product.recommendation_2.name }}</p>
+                            </a>
                             </div>
                         </div>
                     </div>
                     {% endif %}
                     {% if product.recommendation_3.name %}
-                    <div class="col-sm-4">
-                        <div class="card h-20 border-0">
+                    <div class="col-sm-3">
+                        <div class="card bg-light mb-3">
+                            <a href="{% url 'product_detail' product.recommendation_3.id %}">
+
                             {% if product.recommendation_3.image_url %}
-                            <a href="{% url 'product_detail' product.recommendation_3.id %}">
                                 <img class="card-img-top img-fluid" src="{{ product.recommendation_3.image_url }}" alt="{{ product.recommendation_3.name }}">
-                            </a>
                             {% else %}
-                            <a href="{% url 'product_detail' product.recommendation_3.id %}">
                                 <img class="card-img-top img-fluid" src="https://res.cloudinary.com/dyx1tw86r/image/upload/v1645540372/media/noimage.png" alt="{{ product.recommendation_3 }}">
-                            </a>
                             {% endif %}
-                            <div class="card-body pb-0">
+                            <div class="card-header">
                                 <p class="mb-0">{{ product.recommendation_3.name }}</p>
+                            </a>
                             </div>
                         </div>
                       </div>
