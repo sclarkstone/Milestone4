@@ -29,32 +29,37 @@
         </div>
         <div class="row">
             
-            <div class="col-8 col-md-8 col-lg-8 offset-lg-2">
-                          
-                                    
-                               
-                <div class="order-history table-responsive">
-                    <table class="table table-sm table-borderless">
-                        
-                        <tbody>
+            
+                   
                             {% if order_items|length > 0 %}
                             {% for order_item in order_items %}
 
-<tr>
-    <td>
-        {{ order_item.product.name }} - <a href="{% url 'plan_detail' order_item.product.id  %}">View plan</a>
-</td>
-</tr>
+                            <div class="col-sm-3">
+                                <div class="card bg-light mb-3">                   
+                                    {% if order_item.product.image_url %}
+                                    <a href="{% url 'plan_detail' order_item.product.id  %}">
+                            <img class="card-img-top img-fluid" src="{{ order_item.product.image_url }}" alt="{{ order_item.product.name }}">
+                
+                        {% else %}
+                  
+                            <img class="card-img-top img-fluid" src="https://res.cloudinary.com/dyx1tw86r/image/upload/v1645540372/media/noimage.png" alt="{{ order_item.product.name }}">
+                     
+                    {% endif %}
+                                    <div class="card-header">
+                                        {{ order_item.product.name }}</a>
+                        
+                                    </div>
+                                </div>
+                            </div>
+
                             {% endfor %} 
                     {% else %}
                     You dont have any plans set up yet. Check out the <a href="{% url 'products' %}?category=Plans">plans </a> to set up your first plan.
                     {% endif %}       
-                        </tbody>
-                    </table>
+                       
                     
                 
-                </div>
-            </div>
+             
         </div>
         </div>
 {% endblock %}
