@@ -29,7 +29,7 @@ def plans(request):
     
     return render(request, template, context)
 
-
+@login_required
 def plan_detail(request, product_id):
     """ A view to show individual plan details """
     profile_name = get_object_or_404(UserProfile, user=request.user)

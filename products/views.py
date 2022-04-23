@@ -93,15 +93,17 @@ def product_detail(request, product_id):
     review_total = Review.objects.filter(product_id=product_id).count()
     review_sum = Review.objects.filter(product_id=product_id).aggregate(Avg('rating'))['rating__avg']
     
-    profile_name = get_object_or_404(UserProfile, user=request.user)   
-    orders = profile_name.orders.all()
-    order_item = Order.objects.filter(user_profile=request.user.userprofile)
-    order_items = OrderLineItem.objects.filter(order__user_profile=request.user.userprofile, product=product_id).values_list('product')
-    if not order_items:
-        plan_owned = False
+    if request.user.is_authenticated:
+        profile_name = get_object_or_404(UserProfile, user=request.user)
+        orders = profile_name.orders.all()
+        order_item = Order.objects.filter(user_profile=request.user.userprofile)
+        order_items = OrderLineItem.objects.filter(order__user_profile=request.user.userprofile, product=product_id).values_list('product')
+        if not order_items:
+            plan_owned = False
+        else:
+            plan_owned = True
     else:
-       plan_owned = True 
-
+        plan_owned = False
     context = {
         'product': product,
         'review_total': review_total,
