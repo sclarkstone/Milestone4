@@ -35,7 +35,6 @@
         <div class="col-12 col-lg-12">
             <div class="order-history table-responsive">
           
-               
                 {% for i in duration %}
                 <h3>WEEK - {{ i }}</h3>
                 <table class="table table-striped">
@@ -47,76 +46,19 @@
                         </tr>
                     </thead>
                     <tbody>
-{% for a in sessionListMonday %}
-{% if a.week|add:0 == i|add:0 and a.day|add:0 == 1 %}
-<tr>
-    <td>{% for key, value in daynames.items %}{% if value == a.day|add:0 %}{{ key }}{% endif %}{% endfor %}</td>
-    <td>{{ a.description }}</td>
-    <td>{{ a.effort }}</td>
-</tr>
-{% endif %}            
-{% endfor %}
-
-{% for b in sessionListTuesday %}
-{% if b.week|add:0 == i|add:0 and b.day|add:0 == 2 %}
-<tr>
-    <td>{% for key, value in daynames.items %}{% if value == b.day|add:0 %}{{ key }}{% endif %}{% endfor %}</td>
-    <td>{{ b.description }}</td>
-    <td>{{ b.effort }}</td>
-</tr>{% endif %}
-{% endfor %}
-
-{% for c in sessionListWednesday %}
-{% if c.week|add:0 == i|add:0 and c.day|add:0 == 3 %}
-<tr>
-    <td>{% for key, value in daynames.items %}{% if value == c.day|add:0 %}{{ key }}{% endif %}{% endfor %}</td>
-    <td>{{ c.description }}</td>
-    <td>{{ c.effort }}</td>
-</tr>{% endif %}
-{% endfor %}
-
-{% for d in sessionListThursday %}
-{% if d.week|add:0 == i|add:0 and d.day|add:0 == 4 %}
-<tr>
-    <td>{% for key, value in daynames.items %}{% if value == d.day|add:0 %}{{ key }}{% endif %}{% endfor %}</td>
-    <td>{{ d.description }}</td>
-    <td>{{ d.effort }}</td>
-</tr>{% endif %}
-{% endfor %}
-
-{% for e in sessionListFriday %}
-{% if e.week|add:0 == i|add:0 and e.day|add:0 == 5 %}
-<tr>
-    <td>{% for key, value in daynames.items %}{% if value == e.day|add:0 %}{{ key }}{% endif %}{% endfor %}</td>
-    <td>{{ e.description }}</td>
-    <td>{{ e.effort }}</td>
-</tr>{% endif %}
-{% endfor %}
-
-{% for f in sessionListSaturday %}
-{% if f.week|add:0 == i|add:0 and f.day|add:0 == 6 %}
-<tr>
-    <td>{% for key, value in daynames.items %}{% if value == f.day|add:0 %}{{ key }}{% endif %}{% endfor %}</td>
-    <td>{{ f.description }}</td>
-    <td>{{ f.effort }}</td>
-</tr>{% endif %}
-{% endfor %}
-
-{% for g in sessionListSunday %}
-{% if g.week|add:0 == i|add:0 and g.day|add:0 == 7 %}
-<tr>
-    <td>{% for key, value in daynames.items %}{% if value == g.day|add:0 %}{{ key }}{% endif %}{% endfor %}</td>
-    <td>{{ g.description }}</td>
-    <td>{{ g.effort }}</td>
-</tr>{% endif %}
-{% endfor %}
-
+                {% for session in session_list_by_day %}
+                {% if session.week|add:0 == i|add:0 %}
+                <tr>
+                    <td>{% for key, value in daynames.items %}{% if value == session.day|add:0 %}{{ key }}{% endif %}{% endfor %}</td>
+                    <td>{{ session.description }}</td>
+                    <td>{{ session.effort }}</td>
+                </tr>
+{% endif %}
+                {% endfor %}
+                
 </tbody>
-</table>       
-      
-              
-              {% endfor %}
-               
+</table>
+                {% endfor %}
             
                
             </div>

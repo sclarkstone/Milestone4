@@ -58,6 +58,7 @@ The UAT was carried out on desktop, tablet and mobile screen sizes. The UAT was 
 * use card layout for My plans and My reviews to keep layout and design consistant
 * rename review_complete and review_complete2 in review view to more menaingful names (review_complete_product and review_complete_order)
 * made subject and review on review form required fileds with placeholder helper text
+* refactor plan_detail def in plans view to loop through days inside a parent loop of week to reduce code making it much less complicated
 
 ### Bugs
 * chrome error - jquery must be before bootstrap. the CDN link had stopped working.
