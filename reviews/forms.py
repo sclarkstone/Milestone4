@@ -15,12 +15,18 @@ class UserReviewForm(forms.ModelForm):
         """
         super().__init__(*args, **kwargs)
         placeholders = {
-            'subject': 'Title',
-            'review': 'review',
-            'rating': 'rating',
+            'subject': 'Subject/title',
+            'review': 'Add your review here',
+            'rating': 'Rating',
 
         }
 
         self.fields['subject'].widget.attrs['autofocus'] = True
-        for field_name, field in self.fields.items():
-            field.widget.attrs['class'] = 'border-black rounded-0'
+        for field in self.fields:
+            if self.fields[field].required:
+                placeholder = f'{placeholders[field]} *'
+            else:
+                placeholder = placeholders[field]
+            self.fields[field].widget.attrs['placeholder'] = placeholder
+        self.fields[field].widget.attrs['class'] = 'border-black rounded-0'
+        self.fields[field].label = False

@@ -49,6 +49,9 @@
                                         {{ order_item.product.name }}</a>
                         
                                     </div>
+                                    <div class="card-body">
+                                        <a href="{% url 'plan_detail' order_item.product.id  %}" class="btn btn-success">View Plan</a>
+                                      </div>
                                 </div>
                             </div>
 

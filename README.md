@@ -55,6 +55,9 @@ The UAT was carried out on desktop, tablet and mobile screen sizes. The UAT was 
 * set a fixed height on the products cards so they all appear the same giving a uniform and symetrical look.
 * made review subject is review details bolder
 * found an error when not logged in as a user could not view product details. Needed to put an if statement around the profile_name in the product_detail view.
+* use card layout for My plans and My reviews to keep layout and design consistant
+* rename review_complete and review_complete2 in review view to more menaingful names (review_complete_product and review_complete_order)
+* made subject and review on review form required fileds with placeholder helper text
 
 ### Bugs
 * chrome error - jquery must be before bootstrap. the CDN link had stopped working.

@@ -21,9 +21,9 @@ def reviews(request):
     review_completed = Review.objects.filter(user=request.user.userprofile)
     products = Product.objects.all()
 
-    review_complete = Review.objects.filter(user=request.user.userprofile).values('product_id')
-    review_complete2 = Review.objects.filter(user=request.user.userprofile).values('order_number')
-    reviews_needed = OrderLineItem.objects.filter(order__user_profile=request.user.userprofile).exclude(product__pk__in=review_complete, order__order_number__in=review_complete2).all()
+    review_complete_product = Review.objects.filter(user=request.user.userprofile).values('product_id')
+    review_complete_order = Review.objects.filter(user=request.user.userprofile).values('order_number')
+    reviews_needed = OrderLineItem.objects.filter(order__user_profile=request.user.userprofile).exclude(product__pk__in=review_complete_product, order__order_number__in=review_complete_order).all()
 
     template = 'reviews/reviews.html'
     context = {
@@ -31,8 +31,8 @@ def reviews(request):
         'products': products,
         'review_completed': review_completed,
         'reviews_needed': reviews_needed,
-        'review_complete': review_complete,
-        'review_complete2': review_complete2,
+        'review_complete_product': review_complete_product,
+        'review_complete_order': review_complete_order,
     }
     
 
