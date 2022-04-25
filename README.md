@@ -58,7 +58,8 @@ The UAT was carried out on desktop, tablet and mobile screen sizes. The UAT was 
 * use card layout for My plans and My reviews to keep layout and design consistant
 * rename review_complete and review_complete2 in review view to more menaingful names (review_complete_product and review_complete_order)
 * made subject and review on review form required fileds with placeholder helper text
-* refactor plan_detail def in plans view to loop through days inside a parent loop of week to reduce code making it much less complicated
+* refactor plan_detail def in plans view to loop through days inside a parent loop of week to reduce code making it much less complicated.
+* add in the desiarable features to have the recommended products what other customer purchased with the selected item
 
 ### Bugs
 * chrome error - jquery must be before bootstrap. the CDN link had stopped working.
@@ -72,7 +73,7 @@ The UAT was carried out on desktop, tablet and mobile screen sizes. The UAT was 
 * 'operator does not exist: bigint = character varying LINE 1: ...d" = 2) AND "checkout_orderlineitem"."product_id" IN (SELECT'
 
 ## Desirable features
-
+* in the product_details page rather then recommended products that are fixed, to have them dynamic and based on the top 3 of what other customers purchased alongside the selected product.
 
 ## Set up
 
