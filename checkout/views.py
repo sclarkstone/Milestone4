@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpR
 from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.conf import settings
+from django.core.mail import send_mail
+
 
 from .forms import OrderForm
 from .models import Order, OrderLineItem
@@ -87,6 +89,7 @@ def checkout(request):
 
             # Save the info to the user's profile if all is well
             request.session['save_info'] = 'save-info' in request.POST
+            send_mail('Test mail3', 'This is a test', 'clarkstonesam@gmail.com', ['clarkstonesam@gmail.com'], fail_silently=False)
             return redirect(reverse('checkout_success', args=[order.order_number]))
         else:
             messages.error(request, 'There was an error with your form. \
