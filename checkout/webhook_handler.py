@@ -16,15 +16,21 @@ class StripeWH_Handler:
     def __init__(self, request):
         self.request = request
 
-    def _send_confirmation_email(self, order):
+    def _send_confirmation_email (self, order):
         """Send the user a confirmation email"""
         cust_email = order.email
         subject = render_to_string(
             'checkout/confirmation_emails/confirmation_email_subject.txt',
             {'order': order})
-        body = render_to_string(
-            'checkout/confirmation_emails/confirmation_email_body.txt',
-            {'order': order, 'contact_email': settings.DEFAULT_FROM_EMAIL})
+        username = intent.metadata.username
+        if username != 'AnonymousUser':
+            body = render_to_string(
+                'checkout/confirmation_emails/confirmation_email_body_logged_in.txt',
+                {'order': order, 'contact_email': settings.DEFAULT_FROM_EMAIL})
+        else:
+            body = render_to_string(
+                'checkout/confirmation_emails/confirmation_email_body_guest.txt',
+                {'order': order, 'contact_email': settings.DEFAULT_FROM_EMAIL})
         
         send_mail(
             subject,

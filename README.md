@@ -74,6 +74,7 @@ The UAT was carried out on desktop, tablet and mobile screen sizes. The UAT was 
 
 ## Desirable features
 * in the product_details page rather then recommended products that are fixed, to have them dynamic and based on the top 3 of what other customers purchased alongside the selected product.
+* have a pace calculator to give more personalised pace ranges in the my plans
 
 ## Set up
 
