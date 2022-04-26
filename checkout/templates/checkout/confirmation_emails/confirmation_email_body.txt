@@ -11,14 +11,7 @@ Grand Total: £{{ order.grand_total }}
 
 Your order will be shipped to {{ order.street_address1 }} in {{ order.town_or_city }}, {{ order.country }}.
 
-{{ user_status }}
-
-{% if user.is_authenticated %}
-Full order details can be found in the 'My profile' area of the website.
-
-Remember to login and leave a review after youve received and tried out your item(s). Reviews can be left in the 'My Reviews' area of the website.
-{% endif %}
-
+{{ order }}
 
 If you have any questions, feel free to contact us at {{ contact_email }}.
 
