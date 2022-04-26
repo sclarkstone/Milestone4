@@ -70,7 +70,7 @@ The UAT was carried out on desktop, tablet and mobile screen sizes. The UAT was 
 * django error 'Reverse for 'add_review' with no arguments not found'. Although i had the product_id parameter in the url.py, views.py and reviews.html template i had not got it in the form POST action on the add_review template itself.
 * using the search - local variable 'plans' referenced before assignment error. needed the 'plans' if inside the search if
 * when live on heroku - 'MIME type ('text/html') is not a supported stylesheet MIME type, and strict MIME checking is enabled' - corrected link on base template to use cloudinary and not local static file.
-* 'operator does not exist: bigint = character varying LINE 1: ...d" = 2) AND "checkout_orderlineitem"."product_id" IN (SELECT'
+* emails stopped coming through with no errors. gmail required an app specific password, after creating these and setting at the local variables emails then began to be recived again. 
 
 ## Desirable features
 * in the product_details page rather then recommended products that are fixed, to have them dynamic and based on the top 3 of what other customers purchased alongside the selected product.

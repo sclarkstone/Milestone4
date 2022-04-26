@@ -2,16 +2,6 @@
     {% csrf_token %}
     <div class="form-group">
         <div class="input-group">
-            {% if item.product.category.name != 'Plans' %}
-            <div class="input-group-prepend">
-                <button class="decrement-qty btn btn-sm btn-black rounded-0" 
-                    data-item_id="{{ item.item_id }}" id="decrement-qty_{{ item.item_id }}">
-                    <span>
-                        <i class="fas fa-minus fa-sm"></i>
-                    </span>
-                </button>
-            </div>
-            {% endif %}
             {% if item.product.category.name == 'Plans' %}
             <input class="form-control form-control-sm type="number" disabled name="quantity" value="1">
 
@@ -20,14 +10,6 @@
 name="quantity" value="{{ item.quantity }}" min="1" max="99"
 data-item_id="{{ item.item_id }}"
 id="id_qty_{{ item.item_id }}">
-<div class="input-group-append">
-<button class="increment-qty btn btn-sm btn-black rounded-0"
-    data-item_id="{{ item.item_id }}" id="increment-qty_{{ item.item_id }}">
-    <span>
-        <i class="fas fa-plus fa-sm"></i>
-    </span>
-</button>
-</div>
             {% endif %}
         
             {% if item.product.has_sizes %}

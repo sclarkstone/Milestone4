@@ -18,7 +18,6 @@ class StripeWH_Handler:
 
     def _send_confirmation_email(self, order):
         """Send the user a confirmation email"""
-        send_mail('Test mail2', 'This is a test', 'clarkstonesam@gmail.com', ['clarkstonesam@gmail.com'], fail_silently=False)
         cust_email = order.email
         subject = render_to_string(
             'checkout/confirmation_emails/confirmation_email_subject.txt',
@@ -99,7 +98,6 @@ class StripeWH_Handler:
                 attempt += 1
                 time.sleep(1)
         if order_exists:
-            send_mail('Test mail1', 'This is a test', 'clarkstonesam@gmail.com', ['clarkstonesam@gmail.com'], fail_silently=False)
             self._send_confirmation_email(order)
             return HttpResponse(
                 content=f'Webhook received: {event["type"]} | SUCCESS: Verified order already in database',
@@ -145,7 +143,6 @@ class StripeWH_Handler:
                 return HttpResponse(
                     content=f'Webhook received: {event["type"]} | ERROR: {e}',
                     status=500)
-        send_mail('Test mail3', 'This is a test', 'clarkstonesam@gmail.com', ['clarkstonesam@gmail.com'], fail_silently=False)
         self._send_confirmation_email(order)
         return HttpResponse(
             content=f'Webhook received: {event["type"]} | SUCCESS: Created order in webhook',
