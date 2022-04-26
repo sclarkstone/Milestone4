@@ -11,6 +11,8 @@ Grand Total: £{{ order.grand_total }}
 
 Your order will be shipped to {{ order.street_address1 }} in {{ order.town_or_city }}, {{ order.country }}.
 
+{{ user_status }}
+
 {% if user.is_authenticated %}
 Full order details can be found in the 'My profile' area of the website.
 
