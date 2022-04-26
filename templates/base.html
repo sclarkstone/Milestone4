@@ -8,6 +8,7 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="Plans and products to help you run your way to your goals">
     {% endblock %}
 
     {% block extra_meta %}
@@ -53,7 +54,7 @@
                     <div class="input-group w-100">
                         <input class="form-control border border-black rounded-0" type="text" name="q" placeholder="Search our site">
                         <div class="input-group-append">
-                            <button class="form-control btn btn-black border border-black rounded-0" type="submit" name="Search">
+                            <button class="form-control btn btn-black border border-black rounded-0" type="submit" name="Search" title="Search">
                                 <span class="icon">
                                     <i class="fas fa-search"></i>
                                 </span>
@@ -114,7 +115,7 @@
         </div>
         <div id="delivery-banner" class="row text-center">
             <div class="col bg-black text-white">
-                <h4 class="logo-font my-1">Free delivery on orders over £{{ free_delivery_threshold }}!</h4>                
+                <span class="logo-font">-- Free delivery on orders over £{{ free_delivery_threshold }} -- </span>                
             </div>            
         </div>
     </header>
@@ -149,9 +150,9 @@
         <footer class="mt-auto footer">
             <div class="container-fluid">
         <ul class="social-media">
-            <li><a href="https://www.facebook.com/" target="_blank" rel="noopener"><i aria-hidden="true" class="fa-brands fa-facebook" title="Facebook"></i></a></li>
-            <li><a href="https://twitter.com/" target="_blank" rel="noopener"><i aria-hidden="true" class="fa-brands fa-twitter" title="Twitter"></i></a></li>
-            <li><a href="https://www.youtube.com" target="_blank" rel="noopener"><i aria-hidden="true" class=" fa-brands fa-youtube" title="YouTube"></i></a></li>
+            <li><a href="https://www.facebook.com/" target="_blank" rel="noopener" title="Facebook"><i aria-hidden="true" class="fa-brands fa-facebook" title="Facebook"></i></a></li>
+            <li><a href="https://twitter.com/" target="_blank" rel="noopener" title="Twitter"><i aria-hidden="true" class="fa-brands fa-twitter" title="Twitter"></i></a></li>
+            <li><a href="https://www.youtube.com" target="_blank" rel="noopener" title="YouTube"><i aria-hidden="true" class=" fa-brands fa-youtube" title="YouTube"></i></a></li>
         </ul>
 </div>
     </footer>

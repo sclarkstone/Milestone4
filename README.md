@@ -28,6 +28,7 @@ This site is targeted at people who are looking to reach specific distance goals
     * Accessibility - Heading elements are not in a sequentially-descending order - removed the un used h4 around the homepage button.
     * Best Practices - Includes front-end JavaScript libraries with known security vulnerabilities - updated jquery CDN from version 3.4.1 to 3.6.0
     * Accessibility - Background and foreground colors do not have a sufficient contrast ratio. amended the card template to have a darker background so the ahref text is compliant.
+    * SEO - document does not have a meta description. Added a meta name="description" inside the head of the base template.
 
 * JSHint was used to to detect errors and potential problems in your JavaScript code.
 * Python -  using [pep8online](http://pep8online.com/) - app.py
