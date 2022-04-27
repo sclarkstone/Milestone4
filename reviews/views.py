@@ -45,8 +45,12 @@ def review_detail(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     review = Review.objects.filter(product_id=product_id).order_by('-date')
     review_total = Review.objects.filter(product_id=product_id).count()
-    review_sum = Review.objects.filter(product_id=product_id).aggregate(Avg('rating'))['rating__avg']
-
+    
+    if review_total == 0:
+        review_sum = 0
+    else:
+        review_sum = Review.objects.filter(product_id=product_id).aggregate(Avg('rating'))['rating__avg']
+ 
     template = 'reviews/review_detail.html'
     context = {
         'product': product,

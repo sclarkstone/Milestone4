@@ -19,6 +19,7 @@ This site is targeted at people who are looking to reach specific distance goals
 
 ## Design and features
 ## Testing
+### Manual
 * [Chrome developer tools](https://developer.chrome.com/docs/devtools/) on the browser was used to see any errors on the pages.
 * [Chrome developer tools](https://developer.chrome.com/docs/devtools/) device toggle toolbar was utilised to view the site via emulators of different screen sizes and devices.
 * Chrome Lighthouse audit (attempt 1) (Chrome -> dev tools -> Lighthouse) was run to for performance, accessibility, SEO and best practices. On the first attempt the accesibility, best practices and SEO were in the orange. So the following amendments were made follwing the recommendations;
@@ -37,6 +38,12 @@ This site is targeted at people who are looking to reach specific distance goals
 * JSHint was used to to detect errors and potential problems in your JavaScript code.
 * Python -  using [pep8online](http://pep8online.com/) - app.py
 * in Gitpod - to see all errors in all files - python3 -m flake8
+
+### Automated testing
+* form
+* views - reviews found an issue where if you put in a url to the reviewd_details pages with a product id that did not yet have any reviews it would give an error 'type NoneType doesn't define __round__ method' due to the review_sum calculation not working. i put an if statement around the review_sum in the review_details def in the reviews view which corrected the error.
+* models
+
 
 ### User Acceptance Testing
 
