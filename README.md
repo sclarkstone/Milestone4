@@ -21,7 +21,7 @@ This site is targeted at people who are looking to reach specific distance goals
 ## Testing
 * [Chrome developer tools](https://developer.chrome.com/docs/devtools/) on the browser was used to see any errors on the pages.
 * [Chrome developer tools](https://developer.chrome.com/docs/devtools/) device toggle toolbar was utilised to view the site via emulators of different screen sizes and devices.
-* Chrome Lighthouse audit (Chrome -> dev tools -> Lighthouse) was run to for performance, accessibility, SEO and best practices.
+* Chrome Lighthouse audit (attempt 1) (Chrome -> dev tools -> Lighthouse) was run to for performance, accessibility, SEO and best practices. On the first attempt the accesibility, best practices and SEO were in the orange. So the following amendments were made follwing the recommendations;
     
     * Accessibility - Links do not have a discernible name - add title text and aria-hidden="true" to the font aweseome social mead icons in the footer.
     * Accessibility - Buttons do not have an accessible name - add name text to the search button.
@@ -29,6 +29,10 @@ This site is targeted at people who are looking to reach specific distance goals
     * Best Practices - Includes front-end JavaScript libraries with known security vulnerabilities - updated jquery CDN from version 3.4.1 to 3.6.0
     * Accessibility - Background and foreground colors do not have a sufficient contrast ratio. amended the card template to have a darker background so the ahref text is compliant.
     * SEO - document does not have a meta description. Added a meta name="description" inside the head of the base template.
+
+* Chrome Lighthouse audit (attempt 2) (Chrome -> dev tools -> Lighthouse) was run to for performance, accessibility, SEO and best practices. On the second attempt all categories scored in the green.
+![LighthouseAudit](https://res.cloudinary.com/dyx1tw86r/image/upload/media/lighthouseAudit.png)
+
 
 * JSHint was used to to detect errors and potential problems in your JavaScript code.
 * Python -  using [pep8online](http://pep8online.com/) - app.py
@@ -61,6 +65,7 @@ The UAT was carried out on desktop, tablet and mobile screen sizes. The UAT was 
 * made subject and review on review form required fileds with placeholder helper text
 * refactor plan_detail def in plans view to loop through days inside a parent loop of week to reduce code making it much less complicated.
 * add in the desiarable features to have the recommended products what other customer purchased with the selected item
+* renamed views and templates from reviews and plans to my_reviews and my_plans
 
 ### Bugs
 * chrome error - jquery must be before bootstrap. the CDN link had stopped working.

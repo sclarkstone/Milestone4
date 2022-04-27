@@ -14,7 +14,7 @@ from products.models import Product, Category
 
 
 @login_required
-def reviews(request):
+def my_reviews(request):
     """ display user reviews"""
     profile = get_object_or_404(UserProfile, user=request.user)
     
@@ -25,7 +25,7 @@ def reviews(request):
     review_complete_order = Review.objects.filter(user=request.user.userprofile).values('order_number')
     reviews_needed = OrderLineItem.objects.filter(order__user_profile=request.user.userprofile).exclude(product__pk__in=review_complete_product, order__order_number__in=review_complete_order).all()
 
-    template = 'reviews/reviews.html'
+    template = 'reviews/my_reviews.html'
     context = {
         'profile': profile,
         'products': products,

@@ -112,7 +112,7 @@
                         {% elif request.user.is_authenticated and product.category.name == 'Plans' %}
                         {% if plan_owned == True %}
                         <small class="ml-3">
-                            You already own this plan. Checkout <a href="{% url 'plans' %}">My plans</a> to view your plans.
+                            You already own this plan. Checkout <a href="{% url 'my_plans' %}">My plans</a> to view your plans.
                         </small>
                         {% else %}
                         <div class="col{% if s %}-12 mt-2{% endif %}">

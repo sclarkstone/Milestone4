@@ -15,13 +15,13 @@ from products.models import Product, Category
 
 
 @login_required
-def plans(request):
+def my_plans(request):
     """ display users plans"""
     profile = get_object_or_404(UserProfile, user=request.user)
 
     order_items = OrderLineItem.objects.filter(order__user_profile=request.user.userprofile, product__category=5)
 
-    template = 'plans/plans.html'
+    template = 'plans/my_plans.html'
     context = {
         'profile': profile,
         'order_items': order_items,
@@ -80,7 +80,6 @@ def plan_detail(request, product_id):
         'orders': orders,
         'order_items': order_items,
         'order_item': order_items,
-        'plans': plans,
         'weeks': weeks,
         'session_list_by_day': session_list_by_day
     }
