@@ -19,7 +19,4 @@ class Review(models.Model):
     date = models.DateTimeField(auto_now=True, null=True, blank=True)
 
     def __str__(self):
-        return self.user.user.username
-
-    def __str__(self):
         return str(self.product_id)

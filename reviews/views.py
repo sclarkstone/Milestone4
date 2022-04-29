@@ -76,7 +76,7 @@ def add_review(request, product_id, order_number):
             form.instance.order_number = order.order_number
             form.save()
             messages.success(request, 'Successfully added review!')
-            return redirect(reverse('reviews'))
+            return redirect(reverse('my_reviews'))
         else:
             messages.error(request, 'Failed to add review. Please ensure the form is valid.')
     else:
@@ -96,10 +96,10 @@ def add_review(request, product_id, order_number):
 def delete_review(request, product_id, order_number):
     """ Delete a review """
 
-    review = Review.objects.filter(user=request.user.userprofile, product_id=product_id, order_number=order_number).first()
+    review = Review.objects.filter(product_id=product_id, order_number=order_number).first()
     review.delete()
     messages.success(request, 'Review deleted!')
-    return redirect(reverse('reviews'))
+    return redirect(reverse('my_reviews'))
 
 
 @login_required
@@ -114,7 +114,7 @@ def edit_review(request, product_id, order_number):
         if form.is_valid():
             form.save()
             messages.success(request, 'Successfully updated review!')
-            return redirect(reverse('reviews'))
+            return redirect(reverse('my_reviews'))
         else:
             messages.error(request, 'Failed to update review. Please ensure the form is valid.')
     else:
