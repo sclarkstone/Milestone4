@@ -10,9 +10,58 @@ This site is targeted at people who are looking to reach specific distance goals
 ## User experience (UX)
 
 ### Strategy
+* Defining the goals - Due to the global pandemic of Covid, over the last few years the number of people that has taken up running has significantly increased, this can be seen by recently published data from the popular running app, Strava. The increase in people that are new to running or people that are returning to running has lead to a huge demand for coach to 5km plans and virtual community lead running groups.   
+* what is the idea? From this research i narrowed down my idea to having a site that could allow users to get running plans and merchandise and to use those plans to reach their running goals (Run Your Way) and allow users to review products, providing feedback to others.
+* who is the target audience? My target audience would be all people with an interest in taking up running or to progress on their current level of running. From my reserach this was an ever expanding pool of potential users.
+* why should it be created? Offering users the possibility to reach goals and review for others, encouraging others to take up the sport is a huge wellbeing bonus in a time where wellbeing and communuity support is inspirational. 
+
 ### Scope
+* features and functions - several different ways to view all of the plans and products (search, filter, sort and all).
+* content requirements - simple but effective. 
+
 #### User stories
+#### Admin
+* Objective - what does the user want to accomplish? 
+    * To view, write, edit and delete products using the product managment forms. 
+* Functional - what does the user need to do to accomplish the objective? whats involved?
+    * Admin can log in and have instant access to manage (view, edit and delete) all products.
+
+#### Logged in user
+* Objective - what does the user want to accomplish? 
+    * To view product details.
+    * To view plan details.
+    * To view all reviews for products and plans.
+    * To purchase products.
+    * To view all users plans and products
+    * To purchase any plan or products
+    * To view all purchased plans
+    * To write edit and delete reviews for products and plans they have purchased
+    * To view all users reviews when a specific product or plan is selected
+* Functional (user) - what does the user need to do to accomplish the objective? whats involved?
+    * Once logged in, the 'My Plans' item on the My Account menu gives the user access to view purchased plans
+    * Once logged in, the 'My Reviews' item on the My Account menu gives ther user access to edit existing reviews and to add new reviews for purchased plans and products 
+    * Once logged in, all plans can be purchased.
+    * No log in is required for products to be purchased.
+
+#### Viewer
+* Objective - what does the user want to accomplish? 
+    * To view product details.
+    * To view plan details.
+    * To view all reviews for products and plans.
+    * To purchase products.
+* Functional - what does the user need to do to accomplish the objective? whats involved?
+    * Simply visit the site. No log in required. No effort involved. Minimal clicks to get to content. Guest checkout is available for products.
+
 ### Structure
+* how will content be organised and presented - site map
+    * This build is based on the Course content of the Boutique Ado and the apps bag, checkout, home, profiles, products and templates remain primarily unalterted following the tutorial. The only alterations made are;
+        * Products - the addition of a recommended products section on the product_details page. This displays up to 3 recommended products associated with the selected plan/product. These are added as recommended1, recommended2 and recommeneded3 into the fixtures, model and admin forms and are a foreign key to Product. 
+    * Additional to this are the 2 new apps;
+        * Plans - This app is for logged in users who have purchased a plan only. The my_plans and plan_details pages check that the user is logged in and has purchased a plan, using the product_id to check against the users order, itemlines. If the user meets these criteria then they can view the selected plans details which displays each days session over the specified number of weeks. The details for these plans are put together in the fixtures for Distance and Session. No admin access to add, edit or delete is required here as they are fixed plans and will not vary. 
+        * Reviews - This app is used in different ways for logged in users and guests. 
+            * Guests use it via the Products app when a product or plan details page is selected. A out of 5 score is shown which is an average of all the review ratings given for the selected product/plan. This can then be clocked on for further details (review_details), such as all the reviews, subjects and ratings, dates the reviews were left and the name of who left the review so that it can be seen a verified review.
+            * logged in users use this app by visiting the 'My Reviews' item on the my account menu. This then shows the my_reviews page where all the reviews for the user can be seen. The reviews to be completed (add) are at the top, with the reviews already left (which can be edited or deleted) at the bottom. Giving full CRUD functionality.
+
 ### Skeleton
 ### Surface
 * Following the C.R.A.P (consistancy, repetition, alignment and proximity) design methodology the pages will all have the same nav bar, footer and color scheme. This will help create a positive user experience.
@@ -41,13 +90,16 @@ This site is targeted at people who are looking to reach specific distance goals
 
 ### Automated testing
 * form
-* views - reviews found an issue where if you put in a url to the reviewd_details pages with a product id that did not yet have any reviews it would give an error 'type NoneType doesn't define __round__ method' due to the review_sum calculation not working. i put an if statement around the review_sum in the review_details def in the reviews view which corrected the error.
+* views - reviews highlighted an issue where if you put in a url to the reviewd_details pages with a product id that did not yet have any reviews it would give an error 'type NoneType doesn't define __round__ method' due to the review_sum calculation not working. i put an if statement around the review_sum in the review_details def in the reviews view which corrected the error.
 * models
 
 
 ### User Acceptance Testing
 
 The UAT was carried out on desktop, tablet and mobile screen sizes. The UAT was also caried out on Chrome, firefox and Edge. This was to ensure cross broswer and cross device compatability and to acieve a positive user experience. 
+
+### Validator testing
+
 * HTML - using W3C validator
 
 
@@ -151,20 +203,13 @@ tables can now be seen in admin area and data can be manually added
 #### set environment variables
 * save STRIPE_PUBLIC_KEY, STRIPE_SECRET_KEY and STRIPE_WH_SECRET in gitpod (settings, variables) and Heroku (settings, config vars)
 
-test card details
-name - test
-email - test@test.com
-phone - 1234567890
-address - anywhere
-card number - 4242 4242 4242 4242
-card date - 04/24
-CVC - 242
-zip - 42424
----------------
-card number - 4000 0025 0000 3155
-card date - 04/24
-CVC - 242
-zip - 44242
+Test card details
+
+Name | Email | Phone | Address | Postcode | Card number | Card date | CVC | Zip  
+-----|-------|-------|---------|----------|-------------|-----------|----- |----
+Test | test@test.com | 1234567890 | anywhere | 12345 | 4242 4242 4242 4242 | 04/24 | 242 | 42424 
+Test | test@test.com | 1234567890 | anywhere | 12345 | 4000 0025 0000 3155 | 04/24 | 242 | 44242 
+
 
 
 ## Deployment
