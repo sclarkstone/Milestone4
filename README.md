@@ -99,7 +99,9 @@ The UAT was carried out on desktop, tablet and mobile screen sizes. The UAT was 
 ### Validator testing
 
 * HTML - using [W3C validator] (https://validator.w3.org/nu/?doc=https%3A%2F%2Fmilestone4-sclarkstone.herokuapp.com%2F)
-    * Duplicate ID user-options
+    * Duplicate ID user-options - gave unique name to mobile version 'user-options-mobile'
+    * No space between attributes - Main-nav.html had id="merch-link"", i removed the second ".
+    * Stray end tag div - base.html had an extra closing div in the footer. i removed this. 
 * CSS - using [W3C Jigsaw](https://jigsaw.w3.org/css-validator)  By direct input - /static/css/base.css. Running the w3c validator the following message came 'Congratulations! No Error Found.'.
 * JavaScript using [JSHint](https://jshint.com/) - checkout/static/js/stripe_elements.js
     * 'Missing semicolon.' - after reviewing the code, the missing semicolon was found to be on line 117. After correcting this i then re run the validator and the issue was resolved.
