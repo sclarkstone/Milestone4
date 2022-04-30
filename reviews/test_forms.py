@@ -9,13 +9,13 @@ class TestItemForm(TestCase):
         self.assertFalse(form.is_valid())
         self.assertIn('subject', form.errors.keys())
         self.assertEqual(form.errors['subject'][0], 'This field is required.')
-    
+
     def test_item_review_is_required(self):
         form = UserReviewForm({'review': ''})
         self.assertFalse(form.is_valid())
         self.assertIn('review', form.errors.keys())
         self.assertEqual(form.errors['review'][0], 'This field is required.')
-    
+
     def test_item_rating_is_required(self):
         form = UserReviewForm({'rating': ''})
         self.assertFalse(form.is_valid())

@@ -9,7 +9,7 @@ class Distance(models.Model):
 
     class Meta:
         verbose_name_plural = 'Distances'
-    
+
     name = models.CharField(max_length=254)
     friendly_name = models.CharField(max_length=254, null=True, blank=True)
     duration = models.CharField(max_length=254, null=True, blank=True)
@@ -30,7 +30,8 @@ class Distance(models.Model):
 
 
 class Session(models.Model):
-    distance = models.ForeignKey('Distance', null=True, blank=True, on_delete=models.SET_NULL)
+    distance = models.ForeignKey(
+        'Distance', null=True, blank=True, on_delete=models.SET_NULL)
     effort = models.CharField(max_length=254)
     description = models.TextField()
     week = models.CharField(max_length=254)

@@ -17,13 +17,20 @@ from products.models import Product, Category
 def my_reviews(request):
     """ display user reviews"""
     profile = get_object_or_404(UserProfile, user=request.user)
-    
+
     review_completed = Review.objects.filter(user=request.user.userprofile)
     products = Product.objects.all()
 
-    review_complete_product = Review.objects.filter(user=request.user.userprofile).values('product_id')
-    review_complete_order = Review.objects.filter(user=request.user.userprofile).values('order_number')
-    reviews_needed = OrderLineItem.objects.filter(order__user_profile=request.user.userprofile).exclude(product__pk__in=review_complete_product, order__order_number__in=review_complete_order).all()
+    review_complete_product = Review.objects.filter(
+        user=request.user.userprofile).values('product_id')
+    review_complete_order = Review.objects.filter(
+        user=request.user.userprofile).values('order_number')
+    reviews_needed = OrderLineItem.objects.filter(
+        order__user_profile=request.user.userprofile
+    ).exclude(
+        product__pk__in=review_complete_product,
+        order__order_number__in=review_complete_order
+    ).all().order_by('-order__date')
 
     template = 'reviews/my_reviews.html'
     context = {
@@ -34,10 +41,8 @@ def my_reviews(request):
         'review_complete_product': review_complete_product,
         'review_complete_order': review_complete_order,
     }
-    
 
     return render(request, template, context)
-
 
 
 def review_detail(request, product_id):
@@ -45,12 +50,13 @@ def review_detail(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     review = Review.objects.filter(product_id=product_id).order_by('-date')
     review_total = Review.objects.filter(product_id=product_id).count()
-    
+
     if review_total == 0:
         review_sum = 0
     else:
-        review_sum = Review.objects.filter(product_id=product_id).aggregate(Avg('rating'))['rating__avg']
- 
+        review_sum = Review.objects.filter(
+            product_id=product_id).aggregate(Avg('rating'))['rating__avg']
+
     template = 'reviews/review_detail.html'
     context = {
         'product': product,
@@ -78,7 +84,10 @@ def add_review(request, product_id, order_number):
             messages.success(request, 'Successfully added review!')
             return redirect(reverse('my_reviews'))
         else:
-            messages.error(request, 'Failed to add review. Please ensure the form is valid.')
+            messages.error(
+                request,
+                'Failed to add review. Please ensure the form is valid.'
+            )
     else:
         form = UserReviewForm()
     template = 'reviews/add_review.html'
@@ -96,7 +105,8 @@ def add_review(request, product_id, order_number):
 def delete_review(request, product_id, order_number):
     """ Delete a review """
 
-    review = Review.objects.filter(product_id=product_id, order_number=order_number).first()
+    review = Review.objects.filter(
+        product_id=product_id, order_number=order_number).first()
     review.delete()
     messages.success(request, 'Review deleted!')
     return redirect(reverse('my_reviews'))
@@ -105,7 +115,11 @@ def delete_review(request, product_id, order_number):
 @login_required
 def edit_review(request, product_id, order_number):
     """ Edit a review """
-    review = Review.objects.filter(user=request.user.userprofile, product_id=product_id, order_number=order_number).first()
+    review = Review.objects.filter(
+        user=request.user.userprofile,
+        product_id=product_id,
+        order_number=order_number
+    ).first()
     order = get_object_or_404(Order, order_number=order_number)
     product = get_object_or_404(Product, pk=product_id)
     profile = get_object_or_404(UserProfile, user=request.user)
@@ -116,7 +130,10 @@ def edit_review(request, product_id, order_number):
             messages.success(request, 'Successfully updated review!')
             return redirect(reverse('my_reviews'))
         else:
-            messages.error(request, 'Failed to update review. Please ensure the form is valid.')
+            messages.error(
+                request,
+                'Failed to update review. Please ensure the form is valid.'
+            )
     else:
         form = UserReviewForm(instance=review)
         messages.info(request, f'You are editing review for {product.name}')

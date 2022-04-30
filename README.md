@@ -84,8 +84,6 @@ This site is targeted at people who are looking to reach specific distance goals
 ![LighthouseAudit](https://res.cloudinary.com/dyx1tw86r/image/upload/media/lighthouseAudit.png)
 
 
-* JSHint was used to to detect errors and potential problems in your JavaScript code.
-* Python -  using [pep8online](http://pep8online.com/) - app.py
 * in Gitpod - to see all errors in all files - python3 -m flake8
 
 ### Automated testing
@@ -100,12 +98,78 @@ The UAT was carried out on desktop, tablet and mobile screen sizes. The UAT was 
 
 ### Validator testing
 
-* HTML - using W3C validator
-
-
+* HTML - using [W3C validator] (https://validator.w3.org/nu/?doc=https%3A%2F%2Fmilestone4-sclarkstone.herokuapp.com%2F)
+    * Duplicate ID user-options
 * CSS - using [W3C Jigsaw](https://jigsaw.w3.org/css-validator)  By direct input - /static/css/base.css. Running the w3c validator the following message came 'Congratulations! No Error Found.'.
+* JavaScript using [JSHint](https://jshint.com/) - checkout/static/js/stripe_elements.js
+    * 'Missing semicolon.' - after reviewing the code, the missing semicolon was found to be on line 117. After correcting this i then re run the validator and the issue was resolved.
+* Python -  using [pep8online](http://pep8online.com/)
+    * plans app - views.py
+        * line 45 - line too long - put each part of the inside of the brackets on a new line, seperate with a comma. This corrected the error
+        * line 64 - line too long - put each part of the inside of the brackets on a new line, seperate with a comma. This corrected the error
+        * line 67 - line too long - put each part of the inside of the brackets on a new line, seperate with a comma. This corrected the error
+        * After making these corrections i re tested it and got an 'All right' message
+    * plans app - urls.py - All right
+    * plans app - tests_views.py
+        * line 11 - blank line contains whitespace - removed white space.This corrected the error 
+        * line 14 - line too long - put each part of the inside of the brackets on a new line, seperate with a comma. This corrected the error
+        * line 20 - blank line at end of file - removed blank line. This corrected the error
+        * After making these corrections i re tested it and got an 'All right' message.
+    * plans app - tests_models.py
+        * line 9 - line too long - put each part of the inside of the brackets on a new line, seperate with a comma. This corrected the error
+        * line 11 - line too long - put each part of the inside of the brackets on a new line, seperate with a comma. This corrected the error
+        * line 17 - line too long - put each part of the inside of the brackets on a new line, seperate with a comma. This corrected the error
+        * After making these corrections i re tested it and got an 'All right' message.
+    * plans app - models.py - All right
+    * plans app - apps.py - All right
+    * plans app - admin.py - All right
+    * reviews app - views.py
+        * line 28 - line too long - put each part of the inside of the brackets on a new line, seperate with a comma. This corrected the error
+        * line 29 - line too long - put each part of the inside of the brackets on a new line, seperate with a comma. This corrected the error
+        * line 84 - line too long - put each part of the inside of the brackets on a new line, seperate with a comma. This corrected the error
+        * line 113 - line too long - put each part of the inside of the brackets on a new line, seperate with a comma. This corrected the error
+        * line 125 - line too long - put each part of the inside of the brackets on a new line, seperate with a comma. This corrected the error
+        * After making these corrections i re tested it and got an 'All right' message.
+    * reviews app - urls.py
+        * line 7 - line too long - put each part of the inside of the brackets on a new line, seperate with a comma. This corrected the error
+        * line 8 - line too long - put each part of the inside of the brackets on a new line, seperate with a comma. This corrected the error
+        * line 9 - line too long - put each part of the inside of the brackets on a new line, seperate with a comma. This corrected the error
+        * After making these corrections i re tested it and got an 'All right' message.
+    * reviews app - test_views.py
+        * line 36 - line too long - put each part of the inside of the brackets on a new line, seperate with a comma. This corrected the error
+        * line 37 - line too long - put each part of the inside of the brackets on a new line, seperate with a comma. This corrected the error
+        * line 49 - line too long - put each part of the inside of the brackets on a new line, seperate with a comma. This corrected the error
+        * line 50 - line too long - put each part of the inside of the brackets on a new line, seperate with a comma. This corrected the error
+        * line 62 - line too long - put each part of the inside of the brackets on a new line, seperate with a comma. This corrected the error
+        * line 63 - line too long - put each part of the inside of the brackets on a new line, seperate with a comma. This corrected the error
+        * line 64 - line too long - put each part of the inside of the brackets on a new line, seperate with a comma. This corrected the error
+        * line 75 - line too long - put each part of the inside of the brackets on a new line, seperate with a comma. This corrected the error
+        * line 76 - line too long - put each part of the inside of the brackets on a new line, seperate with a comma. This corrected the error
+        * line 77 - line too long - put each part of the inside of the brackets on a new line, seperate with a comma. This corrected the error
+        * line 78 - line too long - put each part of the inside of the brackets on a new line, seperate with a comma. This corrected the error
+        * line 87 - line too long - put each part of the inside of the brackets on a new line, seperate with a comma. This corrected the error
+        * line 88 - line too long - put each part of the inside of the brackets on a new line, seperate with a comma. This corrected the error
+        * line 90 - line too long - put each part of the inside of the brackets on a new line, seperate with a comma. This corrected the error
+        * line 92 - line too long - put each part of the inside of the brackets on a new line, seperate with a comma. This corrected the error
+        * line 95 - line too long - put each part of the inside of the brackets on a new line, seperate with a comma. This corrected the error
+        * After making these corrections i re tested it and got an 'All right' message.
+    * reviews app - test_models.py
+        * line 12 - line too long - put each part of the inside of the brackets on a new line, seperate with a comma. This corrected the error
+        * line 13 - line too long - put each part of the inside of the brackets on a new line, seperate with a comma. This corrected the error
+        * line 15 - line too long - put each part of the inside of the brackets on a new line, seperate with a comma. This corrected the error
+        * After making these corrections i re tested it and got an 'All right' message.
+    * reviews app - test_forms.py - All right
+    * reviews app - models.py
+        * line 14 - line too long - put each part of the inside of the brackets on a new line, seperate with a comma. This corrected the error
+        * After making these corrections i re tested it and got an 'All right' message.
+    * reviews app - forms.py - All right
+    * reviews app - apps.py - All right
+    * reviews app - apps.py - All right
 
-* JavaScript using JSHint - index.html
+
+
+
+
 
 ### First mentor meeting
 * discussed the concept of the website and the best way to do the database design. Initially i was planning to have 3 seperate tables for sessions, effort and type but it was recommended that this was not needed and to combine them into one.
