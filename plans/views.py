@@ -46,7 +46,16 @@ def plan_detail(request, product_id):
         product=product_id).values_list('product')
 
     if not order_items:
-        profile = get_object_or_404(Product, pk=False)
+        messages.error(request, 'Sorry, you have not purchased this plan.')
+        order_items = OrderLineItem.objects.filter(
+        order__user_profile=request.user.userprofile, product__category=5)
+        template = 'plans/my_plans.html'
+        context = {
+            'profile': profile_name,
+            'order_items': order_items,
+        }
+
+        return render(request, template, context)
 
     session = Session.objects.filter(distance=distance.pk)
 

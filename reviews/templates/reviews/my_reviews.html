@@ -5,90 +5,99 @@
 {% endblock %}
 
 {% block page_header %}
-    <div class="container header-container">
-        <div class="row">
-            <div class="col"></div>
-        </div>
-    </div>
+<div class="container header-container">
+  <div class="row">
+    <div class="col"></div>
+  </div>
+</div>
 {% endblock %}
 
 {% block content %}
 <div class="overlay"></div>
 <div class="container">
-    <div class="row">
-        <div class="col">
-            <hr>
-            <h2 class="logo-font mb-4">My Reviews</h2>
-            <hr>
-        </div>
+  <div class="row">
+    <div class="col">
+      <hr>
+      <h2 class="logo-font mb-4">My Reviews</h2>
+      <hr>
     </div>
-    <div class="row">
-      
-          
-                    {% for item in reviews_needed %}
-                    <div class="col-sm-3">
-                      <div class="card bg-light mb-3">
-                            {% if item.product.image_url %}
-                              <img class="card-img-top img-fluid" src="{{ item.product.image_url }}" alt="{{ item.product.name }}">
-                          {% else %}
-                              <img class="card-img-top img-fluid" src="https://res.cloudinary.com/dyx1tw86r/image/upload/v1645540372/media/noimage.png" alt="{{ item.product.name }}">
-                          {% endif %}
-                          <div class="card-header">
-                              <p class="mb-0">{{ item.product.name }}</p>
-                              <small>
-                                Purchased on {{ item.order.date }}
-                              </small>
-                          </a>
-                          </div>
-                          <div class="card-body">
-                            <a href="{% url 'add_review' item.product.id item.order.order_number %}" class="btn btn-success">Leave review</a>
-                          </div>
-                      </div>
-                  </div>
-                  {% empty %}
-                  You dont have any reviews to leave yet. Make a purchase of a <a href="{% url 'products' %}?category=Plans">plan </a> or <a href="{% url 'products' %}?category=Nutrition,Recovery,Hydration,Attire">merchandise </a> first.
+  </div>
+  <div class="row">
 
-                  {% endfor %}
-                  </div>
-                  <hr>
-                  <h5>Previous reviews</h5>
-                  <hr>
-                  <div class="row">
 
-                  {% for reviews_completed in review_completed %}
-                  {% for product in products %}
-                  {% if reviews_completed.product_id|add:0 == product.pk %}
-                  <div class="col-sm-3">
-                    <div class="card bg-light mb-3">
-                          {% if product.image_url %}
-                            <img class="card-img-top img-fluid" src="{{ product.image_url }}" alt="{{ product.name }}">
-                        {% else %}
-                            <img class="card-img-top img-fluid" src="https://res.cloudinary.com/dyx1tw86r/image/upload/v1645540372/media/noimage.png" alt="{{ product.name }}">
-                        {% endif %}
-                        <div class="card-header">
-                            <p class="mb-0">{{ product.name }}</p>
-                            <small>
-                              Reviewed on {{ reviews_completed.date }}
-                            </small>
-                        </a>
-                        </div>
-                        <div class="card-body">
-                          <p><a href="{% url 'edit_review' reviews_completed.product_id reviews_completed.order_number %}" class="btn btn-primary">Update review</a></p>
-                          <p></p><a href="{% url 'delete_review' reviews_completed.product_id reviews_completed.order_number %}" class="btn btn-warning">Delete review</a></p>
-                        </div>
-                    </div>
-                </div>
-            
-                  {% endif %}
-                  {% endfor %}                                 
-      
-                 {% endfor %}
-               
-          
-          </div>
+    {% for item in reviews_needed %}
+    <div class="col-sm-3">
+      <div class="card bg-light mb-3">
+        {% if item.product.image_url %}
+        <img class="card-img-top img-fluid" src="{{ item.product.image_url }}" alt="{{ item.product.name }}">
+        {% else %}
+        <img class="card-img-top img-fluid"
+          src="https://res.cloudinary.com/dyx1tw86r/image/upload/v1645540372/media/noimage.png"
+          alt="{{ item.product.name }}">
+        {% endif %}
+        <div class="card-header">
+          <p class="mb-0">{{ item.product.name }}</p>
+          <small>
+            Purchased on {{ item.order.date }}
+          </small>
+          </a>
         </div>
-       
+        <div class="card-body">
+          <a href="{% url 'add_review' item.product.id item.order.order_number %}" class="btn btn-success">Leave
+            review</a>
+        </div>
+      </div>
     </div>
+    {% empty %}
+    <small class="ml-3">
+    You dont have any reviews to leave yet. Make a purchase of a <a href="{% url 'products' %}?category=Plans">plan </a>
+    or <a href="{% url 'products' %}?category=Nutrition,Recovery,Hydration,Attire">merchandise </a> first.</small>
+
+    {% endfor %}
+  </div>
+  <hr>
+  <h5>Previous reviews</h5>
+  <hr>
+  <div class="row">
+
+    {% for reviews_completed in review_completed %}
+    {% for product in products %}
+    {% if reviews_completed.product_id|add:0 == product.pk %}
+    <div class="col-sm-3">
+      <div class="card bg-light mb-3">
+        {% if product.image_url %}
+        <img class="card-img-top img-fluid" src="{{ product.image_url }}" alt="{{ product.name }}">
+        {% else %}
+        <img class="card-img-top img-fluid"
+          src="https://res.cloudinary.com/dyx1tw86r/image/upload/v1645540372/media/noimage.png"
+          alt="{{ product.name }}">
+        {% endif %}
+        <div class="card-header">
+          <p class="mb-0">{{ product.name }}</p>
+          <small>
+            Reviewed on {{ reviews_completed.date }}
+          </small>
+          </a>
+        </div>
+        <div class="card-body">
+          <p><a href="{% url 'edit_review' reviews_completed.product_id reviews_completed.order_number %}"
+              class="btn btn-primary">Update review</a></p>
+          <p></p><a href="{% url 'delete_review' reviews_completed.product_id reviews_completed.order_number %}"
+            class="btn btn-warning">Delete review</a></p>
+        </div>
+      </div>
     </div>
+
+    {% endif %}
+    {% endfor %}
+
+    {% endfor %}
+
+
+  </div>
+</div>
+
+</div>
+</div>
 
 {% endblock %}
