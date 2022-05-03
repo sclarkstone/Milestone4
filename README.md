@@ -56,17 +56,178 @@ This site is targeted at people who are looking to reach specific distance goals
 * how will content be organised and presented - site map
     * This build is based on the Course content of the Boutique Ado and the apps bag, checkout, home, profiles, products and templates remain primarily unalterted following the tutorial. The only alterations made are;
         * Products - the addition of a recommended products section on the product_details page. This displays up to 3 recommended products associated with the selected plan/product. These are added as recommended1, recommended2 and recommeneded3 into the fixtures, model and admin forms and are a foreign key to Product. 
-    * Additional to this are the 2 new apps;
+    * Additional to this and part of the milestone 4 requirements are the 2 new apps;
         * Plans - This app is for logged in users who have purchased a plan only. The my_plans and plan_details pages check that the user is logged in and has purchased a plan, using the product_id to check against the users order, itemlines. If the user meets these criteria then they can view the selected plans details which displays each days session over the specified number of weeks. The details for these plans are put together in the fixtures for Distance and Session. No admin access to add, edit or delete is required here as they are fixed plans and will not vary. 
         * Reviews - This app is used in different ways for logged in users and guests. 
             * Guests use it via the Products app when a product or plan details page is selected. A out of 5 score is shown which is an average of all the review ratings given for the selected product/plan. This can then be clocked on for further details (review_details), such as all the reviews, subjects and ratings, dates the reviews were left and the name of who left the review so that it can be seen a verified review.
             * logged in users use this app by visiting the 'My Reviews' item on the my account menu. This then shows the my_reviews page where all the reviews for the user can be seen. The reviews to be completed (add) are at the top, with the reviews already left (which can be edited or deleted) at the bottom. Giving full CRUD functionality.
 
 ### Skeleton
+![Mock up wireframe for reviews app](https://res.cloudinary.com/dyx1tw86r/image/upload/media/ReviewsWireframe.png)
+![Mock up wireframe for plans app ](https://res.cloudinary.com/dyx1tw86r/image/upload/media/PlansWireframe.png)
+
 ### Surface
 * Following the C.R.A.P (consistancy, repetition, alignment and proximity) design methodology the pages will all have the same nav bar, footer and color scheme. This will help create a positive user experience.
 
 ## Design and features
+### Database
+* To allow users to create, locate, display, edit and delete records (CRUD functionality) the database needed to have the following structure;
+    
+    * users - this would be to store a password for each user and to be able to associate which users was the author of each ending.
+    * reviews - this would be to store the details of each review, including the date it was submitted.
+    * products and categories - This is to populate the details for each product id against a category. It would also allow the functionality for the admin user only to be able to add/edit/delete products so the possibility is there to easily expand the site for more variety of content. It future proofs the concept and makes it adaptable.
+* For content that was not available for CRUD but was vast and so needed to be stored in a database rather then hardcoded;
+    * sessions and distances - this is to populate the plans details pages with the day by day, week by week session details for the selected plan.
+
+### Home page
+
+* Navigation bar
+
+    * Featured on all pages, the fully responsive bar includes Logo text (links to homepage) with links to the plans and merchandise pages. The my account links available are then customised depending on which type of user is viewing. If they are not logged in and are just viewing content then the links available are Home, Log in and register.  All logged in users have the following links available; Home, my profile, my reviews, my plans and Log Out. if a user type is admin and logged in then they have the following links available; Home, product management, my profile, my reviews, my plans and Log Out.
+    * This section will allow the user to easily navigate between pages without having to revert back to the previous page via the browsers back button.
+    * The navigation bar uses a collapsed 'hamburger' style for the link on mobile devices and smaller screen sizes. 
+    * The bag total is shown here with a running total of all the products currently in the bag.
+    * search allows the visitor to search for any product keyword and provides all matches where the keyword is in the title of the product.
+
+![Large screen nav bar - logged in](https://res.cloudinary.com/dyx1tw86r/image/upload/media/NavLargeScreen.png)
+![Mobile screen nav bar](https://res.cloudinary.com/dyx1tw86r/image/upload/media/NavMobileScreen.png)
+
+* Content
+
+    * The home page begins with a larger header which immediatly gives the context of the site.
+    * There is a promonent button which links to the plans page as this is the main feature of the site.
+    * A large background image is used featuring a variety of running shirts, medals and parkrun bands to represent running acheivements and matches the context of the site goals.
+
+![Large screen main content](https://res.cloudinary.com/dyx1tw86r/image/upload/media/HomeLargeScreen.png)
+![Mobile screen main content](https://res.cloudinary.com/dyx1tw86r/image/upload/media/HomeMobileScreen.png)
+
+* Footer
+
+    * The footer section is repeated across all pages for consistancy so the user can become comfortable with the layout no matter which page they are on.
+    * The footer contains links to social media accounts that open in new windows so that they can easily go back to the page they were on.
+
+![screen shot of footer](https://res.cloudinary.com/dyx1tw86r/image/upload/media/Footer.png)
+
+
+### login page
+
+![Screen shot of login page main content](https://res.cloudinary.com/dyx1tw86r/image/upload/media/LoginScreen.png)
+
+* A basic form is displayed with validated username and password fields. A message appears if login is unsuccessful due to missing fields or incorrect details entered that do not match the details in the users table. 
+* A link to the register page is displayed in case the user has not yet created an account. 
+
+### Register page
+
+![Screen shot of register page main content](https://res.cloudinary.com/dyx1tw86r/image/upload/media/RegisterScreen.png)
+
+* A basic form is displayed with validated username and password fields. A message appears if sign up is unsuccessful due to missing fields or already existing username being entered that matches the details in the users table. 
+* A link to the login page is displayed in case the user has already created an account. 
+
+### my profile page
+
+![Screen shot of my profile page main content on large screen](https://res.cloudinary.com/dyx1tw86r/image/upload/media/MyProfileScreenLarge.png)
+![Screen shot of my profile page main content on mobile screen](https://res.cloudinary.com/dyx1tw86r/image/upload/media/MyProfileScreenMobile.png)
+
+* A form is displayed where a users delivery and billing details can be saved.
+* a list of all orders made by the user are displayed under order history. Where there are no orders yet links to the products and merchandise pages are displayed.
+* only logged in users can see this page. If the page is navigiated to without a user being logged in it will redirect to the log in page.
+* The page content is responsive to screen size and will adjust accordingly by having the profile form side by side with the order history on a larger screen size and on a smaller screen size form and order history will appear below one another.
+
+### my reviews page
+
+![Screen shot of my reviews page main content on large screen](https://res.cloudinary.com/dyx1tw86r/image/upload/media/MyReviewsScreenLarge.png)
+![Screen shot of  my reviews page main content on mobile screen](https://res.cloudinary.com/dyx1tw86r/image/upload/media/MyReviewsScreenMobile.png)
+
+* The card rows are responsive to screen size and will adjust accordingly by having the cards side by side (maximum of 4) on a larger screen size decreasing to a smaller screen size where the cards will appear below one another.
+* A default image is used for all cards where a product image has not been provided.
+* The cards display summary information of the order; product image (or default image), title, purchased date and a  dynamic link. The link will be 'leave review' to the add review page if no review has already been left by the user for this product and order. The link will be 'edit review' to the edit review page if no review has already been left by the user for this product and order. With an additional link to delete the review on reviews already complete. The links pass through the product id and order number. 
+
+### my plans page
+
+![Screen shot of my plans page main content on large screen](https://res.cloudinary.com/dyx1tw86r/image/upload/media/MyPlansScreenLarge.png)
+![Screen shot of my plans page main content on mobile screen](https://res.cloudinary.com/dyx1tw86r/image/upload/media/MyPlansScreenMobile.png)
+
+* The page has a block of text with supporting information for the plans with external links to social media platforms.
+* The card rows are responsive to screen size and will adjust accordingly by having the cards side by side (maximum of 4) on a larger screen size decreasing to a smaller screen size where the cards will appear below one another.
+* A default image is used for all cards where a plan image has not been provided.
+* The cards display summary information of the plan; image (or default image), title and a link to the plan details page for the full plan details.
+
+### plans details page
+
+![Screen shot of plan details page main content](https://res.cloudinary.com/dyx1tw86r/image/upload/media/PlanDetailsScreen.png)
+
+* The page has a block of text with supporting information for the plans with external links to social media platforms and the warm up details which is dynamic for each plan id.
+* The rest of the page is taken up with the plan details which is dynamic and based on the plan id selected. The number of weeks and session details are all pulled from the distance and session tables. Where there is no session for particular days  then a default REST day is put in. 
+
+### reviews details page
+
+![Screen shot of review details page main content](https://res.cloudinary.com/dyx1tw86r/image/upload/media/ReviewDetailsScreen.png)
+
+* The page has a rating out of 5 for the selected product id. This is a average of all the total ratings for the selected product id. it is a whole number or to one decimal place. Also showing the total number of reviews for the selected product.
+* The rest of the page displayed each review for the slected product id. Details are, indivudal rating, title, review details and the date and name of who made the review. The date and name are left to reassure the viewer that the reviews are left by real users and are verified purchases.
+* At the end of the reviews there is a dynamic link back to the slected product details page.   
+
+### products (plans) page
+
+![Screen shot of products page (plans) main content on large screen](https://res.cloudinary.com/dyx1tw86r/image/upload/media/PlansScreenLarge.png)
+![Screen shot of products page (plans) main content on medium screen](https://res.cloudinary.com/dyx1tw86r/image/upload/media/PlansScreenMedium.png)
+![Screen shot of products page (plans) main content on mobile screen](https://res.cloudinary.com/dyx1tw86r/image/upload/media/PlansScreenMobile.png)
+
+
+* The card rows are responsive to screen size and will adjust accordingly by having the cards side by side (maximum of 4) on a larger screen size decreasing to a smaller screen size where the cards will appear below one another.
+* A default image is used for all cards where a plan image has not been provided.
+* The cards display summary information of the plan; image (or default image), title, price and a link to the product details page for full details.
+* a sort selector enables the viewer to sort the plans by name or price (ascending or descending)
+
+### products (merchandise) page
+
+![Screen shot of products page (merchandise) main content on large screen](https://res.cloudinary.com/dyx1tw86r/image/upload/media/MerchandiseScreenLarge.png)
+![Screen shot of products page (merchandise) main content on medium screen](https://res.cloudinary.com/dyx1tw86r/image/upload/media/MerchandiseScreenMedium.png)
+![Screen shot of products page (merchandise) main content on mobile screen](https://res.cloudinary.com/dyx1tw86r/image/upload/media/MerchandiseScreenMobile.png)
+
+* The card rows are responsive to screen size and will adjust accordingly by having the cards side by side (maximum of 4) on a larger screen size decreasing to a smaller screen size where the cards will appear below one another.
+* A default image is used for all cards where a plan image has not been provided.
+* The cards display summary information of the plan; image (or default image), title, price and a link to the product details page for full details.
+* a sort selector enables the viewer to sort the plans by name, category or price (ascending or descending)
+* a filter for each category (except for category 5 plans) enables the viewer to filter the products by recovery, nutrition, hydration or attire.
+
+### bag page
+
+![Screen shot of my bag page main content on large screen](https://res.cloudinary.com/dyx1tw86r/image/upload/media/BagScreenLarge.png)
+![Screen shot of my bag page main content on mobile screen](https://res.cloudinary.com/dyx1tw86r/image/upload/media/BagScreenMobile.png)
+
+* a list of all products that have been added to the bag are listed with the product details (name, sku, price) with a quantity selector and links to update the quantity or remove the item from the bag. Where the product id is in category 5 (plans) the quantity is fixed at 1, the item quantity cannot be updated but it can be removed.  Where there are no items in the bag a message ' your bag is empty' is displayed.
+* The page content is responsive to screen size and will adjust accordingly by having the products in bag side by side with the running total, delivery and grand total on a larger screen size and on a smaller screen size products in bag and totals will appear below one another.
+
+### checkout page
+
+![Screen shot of my checkout page main content on large screen](https://res.cloudinary.com/dyx1tw86r/image/upload/media/CheckoutScreenLarge.png)
+![Screen shot of my checkout page main content on mobile screen](https://res.cloudinary.com/dyx1tw86r/image/upload/media/CheckoutScreenMobile.png)
+
+* A form is displayed where a users delivery and billing details and car details are required.
+* a list of all items in the order made by the user are displayed under order summary.
+* The page content is responsive to screen size and will adjust accordingly by having the details form side by side with the order summary on a larger screen size and on a smaller screen size form and order summary will appear below one another.
+
+### checkout success page
+
+![Screen shot of checkout success details page main content](https://res.cloudinary.com/dyx1tw86r/image/upload/media/CheckoutSuccessScreen.png)
+
+* The page displays the information used to make the order, email, address, order items and a unique order number and date of the order.
+* At the end of the page there is a dynamic link. If the user is logged in the link will go to the the my reviews page. If the user is not logged in it will go to the products page.   
+
+
+### product management (add) page
+
+![Screen shot of product management (add) page main content](https://res.cloudinary.com/dyx1tw86r/image/upload/media/ProductManageAddScreen.png)
+
+* A validated form is displayed where a new product can be added. Category, name, description, price are required. recommendation 1, 2 and 3 and optional and are a selector of all current product names which can be added as a recommended associated product that goes well with the current product. If an image URL is not added the default 'no image' will be used. 
+
+### product management (edit) page
+
+![Screen shot of product management (edit) page main content](https://res.cloudinary.com/dyx1tw86r/image/upload/media/ProductManageEditScreen.png)
+
+* A validated form is displayed where a new product can be added. Category, name, description, price are required. recommendation 1, 2 and 3 and optional and are a selector of all current product names which can be added as a recommended associated product that goes well with the current product. If an image URL is not added the default 'no image' will be used. The form is auto populated with the product details for the selected product id.
+
 ## Testing
 ### Manual
 * [Chrome developer tools](https://developer.chrome.com/docs/devtools/) on the browser was used to see any errors on the pages.
@@ -413,7 +574,7 @@ Following these steps i carried out the set up;
 * run command 'touch .gitignore' to create ignore file and then add to file *.sqlite3, *.pyc
 * run command 'python3 manage.py runserver' to check it is runner as expected. a Django screen will appear on the browser with the message 'The install worked successfully! Congratulations! You are seeing this page because DEBUG=True is in your settings file and you have not configured any URLs.'
 * stop the server then run command 'python3 manage.py migrate'
-* run command'python3 manage.py createsuperuser', input a username (sclarkstone7153), email (samclarkstone@hotmail.com) and password (Unicorn2001)
+* run command'python3 manage.py createsuperuser', input a username, email and password.
 * run command git add .
 * run command git commit -m "commit message"
 * run command git push
