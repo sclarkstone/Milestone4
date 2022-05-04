@@ -18,13 +18,19 @@ def my_reviews(request):
     """ display user reviews"""
     profile = get_object_or_404(UserProfile, user=request.user)
 
+    # get all completed reviews for the user
     review_completed = Review.objects.filter(user=request.user.userprofile)
     products = Product.objects.all()
 
+    # match the reviews of the user with the product id and order number
     review_complete_product = Review.objects.filter(
         user=request.user.userprofile).values('product_id')
     review_complete_order = Review.objects.filter(
         user=request.user.userprofile).values('order_number')
+    
+    # get the reviews that have not yet been 
+    # completed by getting all user orders and excluding 
+    # reviews completed already 
     reviews_needed = OrderLineItem.objects.filter(
         order__user_profile=request.user.userprofile
     ).exclude(
@@ -48,12 +54,18 @@ def my_reviews(request):
 def review_detail(request, product_id):
     """ Display the selected product to review """
     product = get_object_or_404(Product, pk=product_id)
+    
+    # get all products for the product id, order by date desc
     review = Review.objects.filter(product_id=product_id).order_by('-date')
+
+    # get a total count of the all the reviews for the product id
     review_total = Review.objects.filter(product_id=product_id).count()
 
+    # if no reviews then no sum needed
     if review_total == 0:
         review_sum = 0
     else:
+        # get the average of all the ratings for the product id
         review_sum = Review.objects.filter(
             product_id=product_id).aggregate(Avg('rating'))['rating__avg']
 
@@ -62,6 +74,7 @@ def review_detail(request, product_id):
         'product': product,
         'review': review,
         'review_total': review_total,
+        # round to a whole number or 1 decimal place
         'review_sum': (round(review_sum, 1)),
     }
 
@@ -81,6 +94,7 @@ def add_review(request, product_id, order_number):
             form.instance.product_id = product.id
             form.instance.order_number = order.order_number
             form.save()
+            # if form valid, save with the product id and order number
             messages.success(request, 'Successfully added review!')
             return redirect(reverse('my_reviews'))
         else:
@@ -115,6 +129,8 @@ def delete_review(request, product_id, order_number):
 @login_required
 def edit_review(request, product_id, order_number):
     """ Edit a user review """
+
+    # get the review that matched the user, product id and order number
     review = Review.objects.filter(
         user=request.user.userprofile,
         product_id=product_id,
@@ -127,6 +143,7 @@ def edit_review(request, product_id, order_number):
         form = UserReviewForm(request.POST, request.FILES, instance=review)
         if form.is_valid():
             form.save()
+            # if form is valid, save and go to my reviews page
             messages.success(request, 'Successfully updated review!')
             return redirect(reverse('my_reviews'))
         else:
@@ -135,6 +152,7 @@ def edit_review(request, product_id, order_number):
                 'Failed to update review. Please ensure the form is valid.'
             )
     else:
+        # get form data and populate fields
         form = UserReviewForm(instance=review)
         messages.info(request, f'You are editing review for {product.name}')
 
