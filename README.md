@@ -418,7 +418,7 @@ Interal links|internal link to remain in current window| 'adjust bag' button ope
 External links|external links to open in new tab| footer social media links open in new tab to external relevant sites |Pass
 Dynamic order summary Content|displays all products added to the bag. product name, image, quantity, size, a running subtotal, order total, delivery and grand total. | multiple orders put through to checkout page and all product details appear as expected where the totals adjust and match that from the bag page.|Pass
 Dynamic checkout form Content|displays the checkout form with full name, email address, phone number, street address 1, street address 2, town, county, postcode text fields with country selector and a card payment field. Where the user is logged in and has saved profile details the relevent fields are auto populated. Where the user is a guest or does not have saved profile details then the fields are empty. Requiered fields (full name, email address, phone, street address 1, town, country and card details) fields must be populated to submit. | form validator message (please fill out this field) appears where required fields are empty and form is submitted. form validator message (please include an '@' in the email address) appears where a non valid email address format is needed. a form validator message (please select an item in the list) where the country selector is empty. form validator message ' Your card number is incomplete.' appears where card details left blank. |Pass
-payment | loading image displays whilst details are passed to Swipe. Correct information is passed to Swipe. | on successful completion of the checkout form a blue overlay image is displayed until checkout process is complete. On logging into Swipe the order details (items and delivery information) have been stored correctly. | Pass
+payment | loading image displays whilst details are passed to Stripe. Correct information is passed to Stripe. | on successful completion of the checkout form a blue overlay image is displayed until checkout process is complete. On logging into Stripe the order details (items and delivery information) have been stored correctly. | Pass
 
 #### checkout success page
 
@@ -546,7 +546,7 @@ non admin user logged in - can not view pages|Should not be able to view product
 * set a fixed height on the products cards so they all appear the same giving a uniform and symetrical look.
 * made review subject is review details bolder
 * found an error when not logged in as a user could not view product details. Needed to put an if statement around the profile_name in the product_detail view.
-* use card layout for My plans and My reviews to keep layout and design consistant
+* use card layout for My plans and My reviews to keep layout and design consistant rather then tables
 * rename review_complete and review_complete2 in review view to more menaingful names (review_complete_product and review_complete_order)
 * made subject and review on review form required fileds with placeholder helper text
 * refactor plan_detail def in plans view to loop through days inside a parent loop of week to reduce code making it much less complicated.
@@ -565,7 +565,8 @@ non admin user logged in - can not view pages|Should not be able to view product
 
 ## Desirable features
 * in the product_details page rather then recommended products that are fixed, to have them dynamic and based on the top 3 of what other customers purchased alongside the selected product.
-* have a pace calculator to give more personalised pace ranges in the my plans
+* have a pace calculator to give more personalised pace ranges in the my plans.
+* send a reminder email after a period of time if a review has not been left by a user.
 
 ## Set up
 Following these steps i carried out the set up;

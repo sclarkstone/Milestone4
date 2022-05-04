@@ -101,3 +101,24 @@
 </div>
 
 {% endblock %}
+
+
+
+{% block postloadjs %}
+{{ block.super }}
+<script>
+    function imgPadding(image){
+      var image = document.getElementsByTagName('img'); 
+        if(image.width != '400px') { //tests for the default 'max' width
+          $(image).css({'padding-top': '10px'}); //adds the padding if the test passes
+        }
+        else {
+          return false; //doesn't add padding if the max-width is met
+        }
+      }
+      $(document).ready(function() {
+        imgPadding('img'); //calls the function after the images have been loaded
+      });
+  </script>
+
+{% endblock %}

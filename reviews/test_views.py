@@ -131,7 +131,7 @@ class TestViews(TestCase):
             rating=1.0)
         response = self.client.get(
             f'/reviews/delete/{int(review_id.product_id)}/{str(review_id.order_number)}'
-            )
+        )
         self.assertRedirects(response, '/reviews/')
         existing_items = Review.objects.filter(
             product_id=review_id.product_id,

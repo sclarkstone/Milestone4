@@ -103,7 +103,7 @@ def add_review(request, product_id, order_number):
 
 @login_required
 def delete_review(request, product_id, order_number):
-    """ Delete a review """
+    """ Delete a user review """
 
     review = Review.objects.filter(
         product_id=product_id, order_number=order_number).first()
@@ -114,7 +114,7 @@ def delete_review(request, product_id, order_number):
 
 @login_required
 def edit_review(request, product_id, order_number):
-    """ Edit a review """
+    """ Edit a user review """
     review = Review.objects.filter(
         user=request.user.userprofile,
         product_id=product_id,
