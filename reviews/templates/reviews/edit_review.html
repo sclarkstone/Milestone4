@@ -16,7 +16,7 @@
     <div class="overlay"></div>
     <div class="container">
         <div class="row">
-            <div class="col-12 col-md-10">
+            <div class="col-12 col-md-11">
                 <hr>
                 <h2 class="logo-font mb-4">My Reviews</h2>
                 <h5 class="text-muted">Edit review for {{ product.name }} purchased on {{ order.date }}</h5>
@@ -25,7 +25,7 @@
         </div>
 
         <div class="row">
-            <div class="col-12 col-md-10">
+            <div class="col-12 col-md-11">
                 <form method="POST" action="{% url 'edit_review' product.id order.order_number %}" class="mt-3" enctype="multipart/form-data">
                     {% csrf_token %}
 
