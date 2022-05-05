@@ -1,5 +1,4 @@
 # RUN YOUR WAY
---------------- TURN DEBUG TO FALSE --------------------------------
 
 The live link can be found here - [site link](https://milestone4-sclarkstone.herokuapp.com/)
 
@@ -662,7 +661,7 @@ The new method then became;
 * run command 'git push heroku main'
 
 Heroku also adviced that login password should be updated. As advised i updated my Heroku login and additionally i re generated the API key too.
-
+After all testing is complete turn debug to False (off) and do final commit and push.
 
 ## Credits
 
