@@ -661,6 +661,8 @@ The new method then became;
 * run command 'heroku git:remote -a milestone4-sclarkstone'. This will link the app to your Gitpod terminal.
 * run command 'git push heroku main'
 
+Heroku also adviced that login password should be updated. As advised i updated my Heroku login and additionally i re generated the API key too.
+
 
 ## Credits
 
