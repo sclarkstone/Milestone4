@@ -5,7 +5,7 @@ The live link can be found here - [site link](https://milestone4-sclarkstone.her
 
 This site is targeted at people who are looking to reach specific distance goals. The site offers merchandise and running plans where a registered account is required to purchase the plans so that the detailed plans can be accessed. Honest reviews for each product and plan is encouraged and reviews can be read by other users.  
 
-![Mock up screen shots](https://res.cloudinary.com/dyx1tw86r/image/upload/media/ScreenMockUpsFinal.png)
+![Mock up screen shots](https://res.cloudinary.com/dyx1tw86r/image/upload/media/ScreenMockUps.png)
 
 ## User experience (UX)
 

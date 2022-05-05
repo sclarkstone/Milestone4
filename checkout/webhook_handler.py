@@ -16,12 +16,12 @@ class StripeWH_Handler:
     def __init__(self, request):
         self.request = request
 
-    def _send_confirmation_email(self, order):
+    def _send_confirmation_email(self, order, profile):
         """Send the user a confirmation email"""
         cust_email = order.email
         subject = render_to_string(
             'checkout/confirmation_emails/confirmation_email_subject.txt',
-            {'order': order})
+            {'order': order, 'profile': profile})
         body = render_to_string(
             'checkout/confirmation_emails/confirmation_email_body.txt',
             {'order': order, 'contact_email': settings.DEFAULT_FROM_EMAIL})
@@ -32,23 +32,7 @@ class StripeWH_Handler:
             settings.DEFAULT_FROM_EMAIL,
             [cust_email]
         ) 
-
-    def _send_confirmation_email_plan(self, order):
-        """Send the user an email with plan details"""
-        cust_email = order.email
-        subject = render_to_string(
-            'checkout/confirmation_emails/confirmation_email_subject.txt',
-            {'order': order})
-        body = render_to_string(
-            'checkout/confirmation_emails/confirmation_email_plan_body.txt',
-            {'order': order, 'contact_email': settings.DEFAULT_FROM_EMAIL})
-        
-        send_mail(
-            subject,
-            body,
-            settings.DEFAULT_FROM_EMAIL,
-            [cust_email]
-        )        
+       
 
     def handle_event(self, event):
         """
@@ -115,16 +99,7 @@ class StripeWH_Handler:
                 attempt += 1
                 time.sleep(1)
         if order_exists:
-            # get all items in order by user that are a plan (category 5)
-            items_plan = OrderLineItem.objects.filter(
-            order__user_profile=username,
-            order__order_number=order_number,
-            product__category=5)
-            # check if a plan was purchased as part of the order
-            if order_items:
-               self._send_confirmation_email_plan(order)
-
-            self._send_confirmation_email(order)
+            self._send_confirmation_email(order, profile)
             return HttpResponse(
                 content=f'Webhook received: {event["type"]} | SUCCESS: Verified order already in database',
                 status=200)
@@ -170,16 +145,7 @@ class StripeWH_Handler:
                     content=f'Webhook received: {event["type"]} | ERROR: {e}',
                     status=500)
         
-        # get all items in order by user that are a plan (category 5)
-        items_plan = OrderLineItem.objects.filter(
-        order__user_profile=username,
-        order__order_number=order_number,
-        product__category=5)
-        # check if a plan was purchased as part of the order
-        if order_items:
-            self._send_confirmation_email_plan(order)
-
-        self._send_confirmation_email(order)
+        self._send_confirmation_email(order, profile)
         return HttpResponse(
             content=f'Webhook received: {event["type"]} | SUCCESS: Created order in webhook',
             status=200)
