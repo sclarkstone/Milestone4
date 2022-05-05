@@ -201,6 +201,14 @@
                         <span class="text-uppercase">Back to Profile</span>
                     </a>
                 {% else %}
+                {% if plan == True %}
+                    <a href="{% url 'my_plans' %}" class="btn btn-black rounded-0 my-2">
+                        <span class="icon">
+                            <i class="fas fa-chevron-left"></i>
+                        </span>
+                        <span class="text-uppercase">Access your new plan here</span>
+                 </a>
+                {% endif %}
                 {% if user.is_authenticated %}
                     <a href="{% url 'my_reviews' %}" class="btn btn-black rounded-0 my-2">
                         <span class="icon">
