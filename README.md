@@ -696,7 +696,7 @@ After all testing is complete turn debug to False (off) and do final commit and 
 
 ### Media
 
-* [TinyPNG] (https://tinypng.com/) was used to compress png images to reduce the load time of the site.
+* [TinyPNG] (https://tinypng.com/) was used to compress images to reduce the load time of the site.
 * [Convertio] (https://convertio.co/) was used to convert large jpg images to webp format as recommended by Chrome Lighthouse Audit.
 * [pexels] (https://www.pexels.com/) - for free use of running photos
 * All other images were taken by myself of running kit and items that belong to me.
