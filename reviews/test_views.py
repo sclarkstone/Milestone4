@@ -2,10 +2,7 @@ from django.test import TestCase
 from django.test import Client
 from products.models import Product
 from django.contrib.auth.models import User
-from checkout.models import Order, OrderLineItem
-from django.shortcuts import reverse
-from .forms import UserReviewForm
-from decimal import Decimal
+from checkout.models import Order
 
 from .models import Review
 

@@ -29,14 +29,15 @@
     <div class="col-sm-3">
       <div class="card bg-light mb-3">
         {% if item.product.image_url %}
-        <img class="card-img-top img-fluid" src="{{ item.product.image_url }}" alt="{{ item.product.name }}">
+        <img class="card-img-top card-image-review" style="width: 100%; height: 20vw; object-fit: cover;"
+          src="{{ item.product.image_url }}" alt="{{ item.product.name }}">
         {% else %}
-        <img class="card-img-top img-fluid"
+        <img class="card-img-top card-image-review"
           src="https://res.cloudinary.com/dyx1tw86r/image/upload/v1645540372/media/noimage.png"
           alt="{{ item.product.name }}">
         {% endif %}
         <div class="card-header">
-          <p class="mb-0">{{ item.product.name }}</p>
+          <p class="mb-0">{{ item.product.name }} {% if item.product.category.name == 'Plans' %}Plan{% endif %}</p>
           <small>
             Purchased on {{ item.order.date }}
           </small>
@@ -50,8 +51,9 @@
     </div>
     {% empty %}
     <small class="ml-3">
-    You dont have any reviews to leave yet. Make a purchase of a <a href="{% url 'products' %}?category=Plans">plan </a>
-    or <a href="{% url 'products' %}?category=Nutrition,Recovery,Hydration,Attire">merchandise </a> first.</small>
+      You dont have any reviews to leave yet. Make a purchase of a <a href="{% url 'products' %}?category=Plans">plan
+      </a>
+      or <a href="{% url 'products' %}?category=Nutrition,Recovery,Hydration,Attire">merchandise </a> first.</small>
 
     {% endfor %}
   </div>
@@ -66,14 +68,15 @@
     <div class="col-sm-3">
       <div class="card bg-light mb-3">
         {% if product.image_url %}
-        <img class="card-img-top img-fluid" src="{{ product.image_url }}" alt="{{ product.name }}">
+        <img class="card-img-top card-image-review" style="width: 100%; height: 20vw; object-fit: cover;"
+          src="{{ product.image_url }}" alt="{{ product.name }}">
         {% else %}
-        <img class="card-img-top img-fluid"
+        <img class="card-img-top card-image-review"
           src="https://res.cloudinary.com/dyx1tw86r/image/upload/v1645540372/media/noimage.png"
           alt="{{ product.name }}">
         {% endif %}
         <div class="card-header">
-          <p class="mb-0">{{ product.name }}</p>
+          <p class="mb-0">{{ product.name }} {% if product.category.name == 'Plans' %}Plan{% endif %}</p>
           <small>
             Reviewed on {{ reviews_completed.date }}
           </small>

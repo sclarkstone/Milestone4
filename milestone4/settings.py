@@ -82,7 +82,7 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
-                'django.template.context_processors.request', # required by allauth
+                'django.template.context_processors.request',  # required by allauth
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.media',
@@ -172,7 +172,7 @@ USE_TZ = True
 MEDIA_URL = 'https://res.cloudinary.com/dyx1tw86r/image/upload/media/'
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 MEDIA_ROOT = os.path.join(MEDIA_URL)
-CLOUDINARY_STORAGE = { 'CLOUDINARY_URL': os.environ.get('CLOUDINARY_URL')}
+CLOUDINARY_STORAGE = {'CLOUDINARY_URL': os.environ.get('CLOUDINARY_URL')}
 
 STATIC_URL = 'https://res.cloudinary.com/dyx1tw86r/raw/upload/static/'
 

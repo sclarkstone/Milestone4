@@ -1,17 +1,11 @@
 from django.shortcuts import render, get_object_or_404
-from collections import defaultdict
-from django.core.exceptions import PermissionDenied
-
-
-from django.db import models
-from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import Session, Distance
 
 from profiles.models import UserProfile
 from checkout.models import Order, OrderLineItem
-from products.models import Product, Category
+from products.models import Product
 
 
 @login_required
@@ -43,7 +37,7 @@ def plan_detail(request, product_id):
     # get all order for user
     orders = profile_name.orders.all()
     order_item = Order.objects.filter(user_profile=request.user.userprofile)
-    
+
     # get all user order items
     order_items = OrderLineItem.objects.filter(
         order__user_profile=request.user.userprofile,
@@ -53,7 +47,7 @@ def plan_detail(request, product_id):
     if not order_items:
         messages.error(request, 'Sorry, you have not purchased this plan.')
         order_items = OrderLineItem.objects.filter(
-        order__user_profile=request.user.userprofile, product__category=5)
+            order__user_profile=request.user.userprofile, product__category=5)
         template = 'plans/my_plans.html'
         context = {
             'profile': profile_name,
@@ -70,7 +64,7 @@ def plan_detail(request, product_id):
                 'Thursday': 4, 'Friday': 5, 'Saturday': 6, 'Sunday': 7}
     # initiate list for plan details to go into
     session_list_by_day = []
-    
+
     # give the plans details page the day ids
     days_map = {1, 2, 3, 4, 5, 6, 7}
 
@@ -79,7 +73,7 @@ def plan_detail(request, product_id):
     # get the number of days, starting at 1
     days = range(1, int(7)+1)
 
-    #loop through the number of weeks in the selected plan
+    # loop through the number of weeks in the selected plan
     for counter_week, duration in enumerate(weeks, start=1):
         # loop through the days of the week, for each week
         for counter_day, day in enumerate(days, start=1):
@@ -106,7 +100,7 @@ def plan_detail(request, product_id):
                 session_for_day = list(session_for_day)
                 session_list_by_day += session_for_day
 
-        # pull together all session and default details for all 
+        # pull together all session and default details for all
         # days of the week, for each week of the selected plan
         session_list_by_day += session_for_day
 
@@ -119,7 +113,6 @@ def plan_detail(request, product_id):
         'duration': range(1, int(distance.duration)+1),
         'days': days_map,
         'daynames': daynames,
-        'order_item': order_item,
         'orders': orders,
         'order_items': order_items,
         'order_item': order_items,

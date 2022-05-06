@@ -64,7 +64,11 @@
                             <div class="card bg-light mb-3">
                                 <a href="{% url 'product_detail' product.id %}">
                                 {% if product.image_url %}
-                                    <img class="card-img-top img-fluid" src="{{ product.image_url }}" alt="{{ product.name }}">
+                                    {% if product.category.name == 'Plans' %}
+                                        <img class="card-img-top" src="{{ product.image_url }}" alt="{{ product.name }}">
+                                    {% else %}
+                                        <img class="card-img-top" style="width: 100%; height: 20vw; object-fit: cover;" src="{{ product.image_url }}" alt="{{ product.name }}">
+                                    {% endif %}
                                 {% else %}
                                     <img class="card-img-top img-fluid" src="https://res.cloudinary.com/dyx1tw86r/image/upload/v1645540372/media/noimage.png" alt="{{ product.name }}">
                                 {% endif %}

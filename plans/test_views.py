@@ -1,10 +1,6 @@
 from django.test import TestCase
 from django.test import Client
-from products.models import Product
 from django.contrib.auth.models import User
-from checkout.models import Order, OrderLineItem
-from profiles.models import UserProfile
-from .models import Session, Distance
 
 
 class TestViews(TestCase):

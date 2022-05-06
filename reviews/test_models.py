@@ -1,8 +1,7 @@
 from django.test import TestCase
 from .models import Review
 from products.models import Product
-from checkout.models import Order, OrderLineItem
-from decimal import Decimal
+from checkout.models import Order
 
 
 class TestModels(TestCase):
@@ -16,12 +15,6 @@ class TestModels(TestCase):
             country='GB',
             town_or_city='TEST town',
             street_address1='test street')
-        review = Review.objects.create(
-            product_id=product_id.id,
-            order_number=order_number.order_number,
-            subject='test',
-            review='test',
-            rating=Decimal(1))
 
         review_id = Review.objects.get(
             product_id=product_id.id, order_number=order_number.order_number)

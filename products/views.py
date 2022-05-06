@@ -38,17 +38,17 @@ def all_products(request):
                 if direction == 'desc':
                     sortkey = f'-{sortkey}'
             products = products.order_by(sortkey)
-            
+
         if 'category' in request.GET:
             categories = request.GET['category'].split(',')
             if 'Plans' in categories:
                 plans = True
             else:
-                plans= False
+                plans = False
             products = products.filter(category__name__in=categories)
             categories = Category.objects.filter(name__in=categories)
         else:
-          plans= False  
+            plans = False
 
         if 'q' in request.GET:
             query = request.GET['q']
@@ -59,15 +59,15 @@ def all_products(request):
                     if 'Plans' in categories:
                         plans = True
                     else:
-                        plans= False
+                        plans = False
                 else:
-                    plans= False
+                    plans = False
             else:
-                product_type = products.filter(category__pk=5,name__contains=query)
+                product_type = products.filter(category__pk=5, name__contains=query)
                 if not product_type:
                     plans = False
                 else:
-                    plans= True
+                    plans = True
 
             queries = Q(name__icontains=query)
             products = products.filter(queries)
@@ -92,7 +92,7 @@ def product_detail(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     review_total = Review.objects.filter(product_id=product_id).count()
     review_sum = Review.objects.filter(product_id=product_id).aggregate(Avg('rating'))['rating__avg']
-    
+
     if request.user.is_authenticated:
         profile_name = get_object_or_404(UserProfile, user=request.user)
         orders = profile_name.orders.all()
@@ -131,7 +131,7 @@ def add_product(request):
             messages.error(request, 'Failed to add product. Please ensure the form is valid.')
     else:
         form = ProductForm()
-        
+
     template = 'products/add_product.html'
     context = {
         'form': form,

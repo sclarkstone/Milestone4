@@ -1,6 +1,4 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
-from django.db import models
-from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import Review
@@ -10,7 +8,7 @@ from django.db.models import Avg
 
 from profiles.models import UserProfile
 from checkout.models import Order, OrderLineItem
-from products.models import Product, Category
+from products.models import Product
 
 
 @login_required
@@ -27,10 +25,10 @@ def my_reviews(request):
         user=request.user.userprofile).values('product_id')
     review_complete_order = Review.objects.filter(
         user=request.user.userprofile).values('order_number')
-    
-    # get the reviews that have not yet been 
-    # completed by getting all user orders and excluding 
-    # reviews completed already 
+
+    # get the reviews that have not yet been
+    # completed by getting all user orders and excluding
+    # reviews completed already
     reviews_needed = OrderLineItem.objects.filter(
         order__user_profile=request.user.userprofile
     ).exclude(
@@ -54,7 +52,7 @@ def my_reviews(request):
 def review_detail(request, product_id):
     """ Display the selected product to review """
     product = get_object_or_404(Product, pk=product_id)
-    
+
     # get all products for the product id, order by date desc
     review = Review.objects.filter(product_id=product_id).order_by('-date')
 

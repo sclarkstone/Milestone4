@@ -65,7 +65,7 @@ class Order(models.Model):
 class OrderLineItem(models.Model):
     order = models.ForeignKey(Order, null=False, blank=False, on_delete=models.CASCADE, related_name='lineitems')
     product = models.ForeignKey(Product, null=False, blank=False, on_delete=models.CASCADE)
-    product_size = models.CharField(max_length=2, null=True, blank=True) # XS, S, M, L, XL
+    product_size = models.CharField(max_length=2, null=True, blank=True)  # XS, S, M, L, XL
     quantity = models.IntegerField(null=False, blank=False, default=0)
     lineitem_total = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False, editable=False)
 
@@ -79,10 +79,10 @@ class OrderLineItem(models.Model):
 
     def __str__(self):
         return f'SKU {self.product.sku} on order {self.order.order_number}'
-    
+
     def get_products(self):
         return self.product.sku
-    
+
     def get_order_number(self):
         return self.order.order_number
 

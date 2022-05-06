@@ -231,7 +231,7 @@ This site is targeted at people who are looking to reach specific distance goals
 ### Manual
 * [Chrome developer tools](https://developer.chrome.com/docs/devtools/) on the browser was used to see any errors on the pages.
 * [Chrome developer tools](https://developer.chrome.com/docs/devtools/) device toggle toolbar was utilised to view the site via emulators of different screen sizes and devices.
-* Chrome Lighthouse audit (attempt 1) (Chrome -> dev tools -> Lighthouse) was run to for performance, accessibility, SEO and best practices. On the first attempt the accesibility, best practices and SEO were in the orange. So the following amendments were made follwing the recommendations;
+* Chrome Lighthouse audit (attempt 1) (Chrome -> dev tools -> Lighthouse) was run to for performance, accessibility, SEO and best practices. On the first attempt the accesibility, performance, best practices and SEO were in the orange. So the following amendments were made following the recommendations;
     
     * Accessibility - Links do not have a discernible name - add title text and aria-hidden="true" to the font aweseome social mead icons in the footer.
     * Accessibility - Buttons do not have an accessible name - add name text to the search button.
@@ -239,12 +239,18 @@ This site is targeted at people who are looking to reach specific distance goals
     * Best Practices - Includes front-end JavaScript libraries with known security vulnerabilities - updated jquery CDN from version 3.4.1 to 3.6.0
     * Accessibility - Background and foreground colors do not have a sufficient contrast ratio. amended the card template to have a darker background so the ahref text is compliant.
     * SEO - document does not have a meta description. Added a meta name="description" inside the head of the base template.
+    * Performance - Serve images in next-gen formats. Converted images to webp format.
 
 * Chrome Lighthouse audit (attempt 2) (Chrome -> dev tools -> Lighthouse) was run to for performance, accessibility, SEO and best practices. On the second attempt all categories scored in the green.
 ![LighthouseAudit](https://res.cloudinary.com/dyx1tw86r/image/upload/media/lighthouseAudit.png)
 
 
-* in Gitpod - to see all errors in all files - python3 -m flake8
+* in Gitpod - to see all errors in all files run command 'python3 -m flake8'. The same issues came up across several apps. A summary of these issues are below and how i corrected them;
+    * imported but unused - unused imports removed.
+    * blank line contains whitespace - whitespace removed.
+    * no newline at end of file - missing newline added.
+    * line too long (87 > 79 characters) - lines seperate at commas onto seperate lines.
+
 
 ### Automated testing
 Following the 'Hello django - testing' course material videos (as advised by student services) i created automated testing for the additional apps i had created on top of the Boutique Ado template. This lead to the creation of the following files;
@@ -690,6 +696,7 @@ After all testing is complete turn debug to False (off) and do final commit and 
 
 ### Media
 
-* [TinyPNG] (https://tinypng.com/) was used to compress all images to reduce the load time of the site.
+* [TinyPNG] (https://tinypng.com/) was used to compress png images to reduce the load time of the site.
+* [Convertio] (https://convertio.co/) was used to convert large jpg images to webp format as recommended by Chrome Lighthouse Audit.
 * [pexels] (https://www.pexels.com/) - for free use of running photos
 * All other images were taken by myself of running kit and items that belong to me.

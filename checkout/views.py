@@ -153,12 +153,11 @@ def checkout_success(request, order_number):
         order.user_profile = profile
         order.save()
 
-
         # get all items order by user that are a plan (category 5)
         order_items = OrderLineItem.objects.filter(
-        order__user_profile=request.user.userprofile,
-        order__order_number=order_number,
-        product__category=5)
+            order__user_profile=request.user.userprofile,
+            order__order_number=order_number,
+            product__category=5)
 
         # check if a plan was purchased as part of the order
         if not order_items:
@@ -193,7 +192,7 @@ def checkout_success(request, order_number):
     template = 'checkout/checkout_success.html'
     context = {
         'order': order,
-        'plan' : plan,
+        'plan': plan,
     }
 
     return render(request, template, context)
